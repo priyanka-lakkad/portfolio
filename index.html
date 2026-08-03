@@ -8,7 +8,6 @@
 <link rel="icon" href="favicon-16.png" sizes="16x16" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <script src="./support.js"></script>
-<script src="./resume-modal.js"></script>
 </head>
 <body>
 <x-dc>
@@ -65,7 +64,7 @@
       <div style="{{ navLinksStyle }}" onClick="{{ closeMenu }}">
         <a href="/" style="{{ navLinkStyle }}" style-hover="color:#a78bfa">Work</a>
         <a href="About.dc.html" style="{{ navLinkStyle }}" style-hover="color:#a78bfa">About</a>
-        <a href="assets/Priyanka-Lakkad-Resume.pdf" target="_blank" rel="noopener" onClick="{{ openResume }}" style="{{ navLinkStyle }}" style-hover="color:#a78bfa">Resume</a>
+        <a href="Resume.html" style="{{ navLinkStyle }}" style-hover="color:#a78bfa">Resume</a>
         <a href="Contact.dc.html" style="{{ navLinkStyle }}" style-hover="color:#a78bfa">Contact</a>
       </div>
     </div>
@@ -85,7 +84,7 @@
       <p style="{{ heroCopyStyle }}">I design AI-powered enterprise products that help teams organize complexity into intelligent workflows and make better decisions.</p>
       <div style="display:flex;gap:14px;margin-top:12px;flex-wrap:wrap">
         <a href="#work" style="{{ primaryBtnStyle }}" style-hover="background-position:0% 0;box-shadow:0 0 0 4px rgba(139,92,246,0.22), 0 8px 24px rgba(139,92,246,0.25)" style-focus="outline:none;box-shadow:0 0 0 3px rgba(139,92,246,0.55)">Explore Projects<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
-        <a href="assets/Priyanka-Lakkad-Resume.pdf" target="_blank" rel="noopener" onClick="{{ openResume }}" style="{{ secondaryBtnStyle }}" style-hover="border-color:#8B5CF6;background-color:rgba(10,8,16,0.55);background-position:0% 0;box-shadow:0 0 0 4px rgba(139,92,246,0.22), 0 8px 24px rgba(139,92,246,0.25)" style-active="background-color:rgba(6,5,10,0.75);border-color:#8B5CF6" style-focus="outline:none;box-shadow:0 0 0 3px rgba(139,92,246,0.55)">
+        <a href="Resume.html" style="{{ secondaryBtnStyle }}" style-hover="border-color:#8B5CF6;background-color:rgba(10,8,16,0.55);background-position:0% 0;box-shadow:0 0 0 4px rgba(139,92,246,0.22), 0 8px 24px rgba(139,92,246,0.25)" style-active="background-color:rgba(6,5,10,0.75);border-color:#8B5CF6" style-focus="outline:none;box-shadow:0 0 0 3px rgba(139,92,246,0.55)">
           <span style="{{ resumeDotsWrapStyle }}">
             <sc-for list="{{ resumeDots }}" as="d" hint-placeholder-count="15">
               <span style="{{ d.style }}"></span>
@@ -182,7 +181,7 @@
     </div>
     <div style="{{ contactRightStyle }}">
       <a href="Contact.dc.html" style="{{ primaryBtnStyle }}" style-hover="background-position:0% 0;box-shadow:0 0 0 4px rgba(139,92,246,0.22), 0 8px 24px rgba(139,92,246,0.25)" style-focus="outline:none;box-shadow:0 0 0 3px rgba(139,92,246,0.55)">Let's Connect<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
-      <a href="assets/Priyanka-Lakkad-Resume.pdf" target="_blank" rel="noopener" onClick="{{ openResume }}" style="{{ secondaryBtnStyle }}" style-hover="border-color:#8B5CF6;background-color:rgba(10,8,16,0.55);background-position:0% 0;box-shadow:0 0 0 4px rgba(139,92,246,0.22), 0 8px 24px rgba(139,92,246,0.25)" style-active="background-color:rgba(6,5,10,0.75);border-color:#8B5CF6" style-focus="outline:none;box-shadow:0 0 0 3px rgba(139,92,246,0.55)">
+      <a href="Resume.html" style="{{ secondaryBtnStyle }}" style-hover="border-color:#8B5CF6;background-color:rgba(10,8,16,0.55);background-position:0% 0;box-shadow:0 0 0 4px rgba(139,92,246,0.22), 0 8px 24px rgba(139,92,246,0.25)" style-active="background-color:rgba(6,5,10,0.75);border-color:#8B5CF6" style-focus="outline:none;box-shadow:0 0 0 3px rgba(139,92,246,0.55)">
         <span style="{{ resumeDotsWrapStyle }}">
           <sc-for list="{{ resumeDots }}" as="d" hint-placeholder-count="15">
             <span style="{{ d.style }}"></span>
@@ -203,7 +202,7 @@
       <div style="{{ footerNavStyle }}">
         <a href="/" style="{{ footerNavLinkStyle }}" style-hover="color:#a78bfa">Work</a>
         <a href="About.dc.html" style="{{ footerNavLinkStyle }}" style-hover="color:#a78bfa">About</a>
-        <a href="assets/Priyanka-Lakkad-Resume.pdf" target="_blank" rel="noopener" onClick="{{ openResume }}" style="{{ footerNavLinkStyle }}" style-hover="color:#a78bfa">Resume</a>
+        <a href="Resume.html" style="{{ footerNavLinkStyle }}" style-hover="color:#a78bfa">Resume</a>
         <a href="Contact.dc.html" style="{{ footerNavLinkStyle }}" style-hover="color:#a78bfa">Contact</a>
       </div>
     </div>
@@ -676,11 +675,6 @@ class Component extends DCLogic {
     const rootStyle = { background: 'transparent', color: '#fff', fontFamily: "'Geist',sans-serif", minHeight: '100vh', overflowX: 'hidden' };
 
     const scrolled = this.state.scrolled;
-    const openResume = (e) => {
-      if (typeof window.__openResume !== 'function') return;
-      if (e && e.preventDefault) e.preventDefault();
-      window.__openResume();
-    };
     const isCompact = !isDesktop;
     const menuOpen = !!this.state.menuOpen;
     const toggleMenu = () => this.setState({ menuOpen: !this.state.menuOpen });
@@ -957,7 +951,7 @@ class Component extends DCLogic {
     const scrollProgressStyle = { position: 'fixed', top: 0, left: 0, height: 3, width: '0%', background: 'linear-gradient(90deg, #8B5CF6, #ab84f9)', zIndex: 50 };
 
     return {
-      isDesktop, rootStyle, openResume, navStyle, navInnerStyle, burgerStyle, burgerBars, toggleMenu, closeMenu, barDotsWrapStyle, barDots, navLinksStyle, footerNavStyle, navLinkStyle, navLinkHoverStyle, footerNavLinkStyle, focusRingStyle, logoMarkStyle, logoMarkTextStyle, logoDotsWrapStyle, logoDots, activeDotStyle, availableDotStyle,
+      isDesktop, rootStyle, navStyle, navInnerStyle, burgerStyle, burgerBars, toggleMenu, closeMenu, barDotsWrapStyle, barDots, navLinksStyle, footerNavStyle, navLinkStyle, navLinkHoverStyle, footerNavLinkStyle, focusRingStyle, logoMarkStyle, logoMarkTextStyle, logoDotsWrapStyle, logoDots, activeDotStyle, availableDotStyle,
       heroSectionStyle, heroLeftStyle, heroRightStyle, headlineStyle, headlineWords, heroCopyStyle,
       glowBlobStyle1, glowBlobStyle2, heroCanvasStyle,
       primaryBtnStyle, primaryBtnHoverStyle, secondaryBtnStyle, secondaryBtnHoverStyle, resumeDotsWrapStyle, resumeDots,
