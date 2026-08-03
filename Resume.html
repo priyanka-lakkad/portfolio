@@ -24,7 +24,7 @@
   a { color: #8B5CF6; text-decoration: none; }
   a:hover { color: #a78bfa; }
 
-  nav { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  nav { position: relative; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.08); }
   .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; max-width: 1440px; margin: 0 auto; width: 100%; padding: 24px 120px; }
   .logo { display: flex; align-items: center; gap: 12px; }
   .logo-mark {
@@ -37,6 +37,33 @@
   .nav-links { display: flex; align-items: center; flex-wrap: wrap; justify-content: flex-end; gap: 36px; margin-left: auto; }
   .nav-links a { font-size: 14px; color: rgba(255,255,255,0.75); transition: color 180ms ease-out; }
   .nav-links a.active { color: #a78bfa; }
+
+  .burger {
+    display: none; cursor: pointer; flex-direction: column; justify-content: center; align-items: center;
+    gap: 5px; width: 44px; height: 44px; margin-right: -10px; border-radius: 12px;
+    border: 1px solid rgba(139,92,246,0.28); background: transparent;
+    transition: background 180ms ease-out, border-color 180ms ease-out; flex-shrink: 0;
+  }
+  .burger.is-open { background: rgba(139,92,246,0.14); }
+  .burger span { width: 18px; height: 1.6px; border-radius: 2px; background: #d8c9fc; transition: transform 240ms cubic-bezier(0.22,1,0.36,1), opacity 180ms ease-out; }
+  .burger.is-open span:nth-child(1) { transform: translateY(6.6px) rotate(45deg); }
+  .burger.is-open span:nth-child(2) { opacity: 0; }
+  .burger.is-open span:nth-child(3) { transform: translateY(-6.6px) rotate(-45deg); }
+
+  @media (max-width: 1079px) {
+    .nav-links {
+      position: absolute; top: 100%; left: 0; right: 0; z-index: 60;
+      display: none; flex-direction: column; align-items: stretch; gap: 0;
+      padding: 6px 20px 14px; box-sizing: border-box;
+      background: rgba(9,8,12,0.97); backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.5);
+      margin-left: 0; gap: 0;
+    }
+    .nav-links.is-open { display: flex; }
+    .nav-links a { display: block; width: 100%; padding: 14px 2px; font-size: 16px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .burger { display: inline-flex; }
+  }
 
   main { flex: 1 1 auto; display: flex; flex-direction: column; align-items: center; padding: 64px 24px 96px; }
   h1 { font-size: clamp(32px, 4vw, 44px); font-weight: 700; letter-spacing: -0.015em; margin: 0 0 12px; }
@@ -71,12 +98,12 @@
   .footer-nav a { font-size: 13px; color: rgba(255,255,255,0.6); }
   .copyright { font-size: 13px; color: rgba(255,255,255,0.4); }
 
+  @media (max-width: 1079px) {
+    .footer-nav { display: none; }
+  }
   @media (max-width: 900px) {
     .nav-inner { padding: 20px 24px; }
     .footer-inner { padding: 24px 24px; }
-  }
-  @media (max-width: 640px) {
-    .nav-links { gap: 20px; }
   }
 </style>
 </head>
@@ -88,7 +115,10 @@
         <span class="logo-mark"><span>PL</span></span>
         <span class="logo-name">Priyanka Lakkad</span>
       </a>
-      <div class="nav-links">
+      <div class="burger" id="burger" role="button" tabindex="0" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </div>
+      <div class="nav-links" id="navLinks">
         <a href="/">Work</a>
         <a href="About.dc.html">About</a>
         <a class="active" href="Resume.html">Resume</a>
@@ -124,5 +154,23 @@
     </div>
   </footer>
 
+  <script>
+    var burger = document.getElementById('burger');
+    var navLinks = document.getElementById('navLinks');
+    function toggleMenu() {
+      burger.classList.toggle('is-open');
+      navLinks.classList.toggle('is-open');
+    }
+    burger.addEventListener('click', toggleMenu);
+    burger.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleMenu(); }
+    });
+    navLinks.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') {
+        burger.classList.remove('is-open');
+        navLinks.classList.remove('is-open');
+      }
+    });
+  </script>
 </body>
 </html>
