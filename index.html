@@ -867,6 +867,7 @@ class Component extends DCLogic {
         display: 'flex', flexDirection: 'column', gap: 18,
         padding: 22, borderRadius: 18, border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.02)',
         position: 'relative',
+        ...(isDesktop ? {} : { boxSizing: 'border-box', overflow: 'hidden', width: '100%', maxWidth: '100%' }),
         ...this.revealStyle(p.slotId, i * 70),
         transition: `${this.revealStyle(p.slotId).transition}, transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease, background 220ms ease`
       } : {
