@@ -114,7 +114,7 @@
           <sc-for list="{{ logos }}" as="lg" hint-placeholder-count="7">
             <div style="{{ lg.floatWrapStyle }}">
               <div style="{{ lg.wrapStyle }}" style-hover="filter:grayscale(0) sepia(1) hue-rotate(220deg) saturate(3) opacity(0.9)">
-                <image-slot id="{{ lg.id }}" src="{{ lg.src }}" shape="rounded" radius="8" fit="contain" data-no-bg="" placeholder="logo"></image-slot>
+                <image-slot id="{{ lg.id }}" src="{{ lg.src }}" shape="rounded" radius="{{ lg.radius }}" fit="contain" data-no-bg="" placeholder="logo"></image-slot>
               </div>
             </div>
           </sc-for>
@@ -838,6 +838,7 @@ class Component extends DCLogic {
       : { display: 'flex', gap: isMobile ? 4 : 8, flexWrap: 'nowrap', alignItems: 'center', justifyContent: 'space-evenly', width: '100%' };
     const logos = LOGO_DEFS.map((l, i) => ({
       label: l, id: `logo-${i}`, src: slotFile(`logo-${i}`),
+      radius: isDesktop ? 8 : (isMobile ? 3 : 5),
       floatWrapStyle: { animation: this._reduceMotion ? 'none' : `floatBobSmall ${6 * ENERGY.speed}s ease-in-out infinite alternate` },
       wrapStyle: isDesktop
         ? { width: 80, height: 30, flex: '0 0 auto', filter: 'grayscale(1) opacity(0.55)', transition: 'filter 180ms ease-out' }
