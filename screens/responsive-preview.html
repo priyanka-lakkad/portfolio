@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Responsive preview</title>
+<style>
+  body { margin:0; background:#0b0b0d; font-family:'Geist',system-ui,sans-serif; color:#fff; padding:24px 28px 40px; }
+  h1 { font-size:15px; font-weight:600; letter-spacing:-0.01em; margin:0 0 4px; }
+  p.sub { font-size:12.5px; color:rgba(255,255,255,.45); margin:0 0 22px; }
+  h2 { font-family:ui-monospace,monospace; font-size:11px; letter-spacing:.18em; color:#a78bfa; margin:26px 0 12px; font-weight:500; }
+  .row { display:flex; gap:18px; align-items:flex-start; flex-wrap:wrap; }
+  .cell { display:flex; flex-direction:column; gap:8px; }
+  .label { font-family:ui-monospace,monospace; font-size:10px; letter-spacing:.14em; color:rgba(255,255,255,.4); }
+  .shell { border:1px solid rgba(255,255,255,.14); border-radius:14px; overflow:hidden; background:#060607; box-shadow:0 18px 40px rgba(0,0,0,.5); }
+  iframe { display:block; border:0; background:#060607; }
+  .m iframe { width:390px; height:720px; }
+  .t iframe { width:768px; height:560px; }
+</style>
+</head>
+<body>
+  <h1>Responsive preview</h1>
+  <p class="sub">Real pages in real viewports — scroll inside any frame.</p>
+
+  <h2>MOBILE — 390 × 720</h2>
+  <div class="row m">
+    <div class="cell"><span class="label">HOME</span><div class="shell"><iframe src="../Homepage.dc.html"></iframe></div></div>
+    <div class="cell"><span class="label">ABOUT</span><div class="shell"><iframe src="../About.dc.html"></iframe></div></div>
+  </div>
+  <div class="row m" style="margin-top:18px">
+    <div class="cell"><span class="label">CONTACT</span><div class="shell"><iframe src="../Contact.dc.html"></iframe></div></div>
+    <div class="cell"><span class="label">CASE STUDY</span><div class="shell"><iframe src="../Project-ComplyOne.dc.html"></iframe></div></div>
+  </div>
+
+  <h2>TABLET — 768 × 560</h2>
+  <div class="row t">
+    <div class="cell"><span class="label">HOME</span><div class="shell"><iframe src="../Homepage.dc.html"></iframe></div></div>
+    <div class="cell"><span class="label">ABOUT</span><div class="shell"><iframe src="../About.dc.html"></iframe></div></div>
+  </div>
+  <div class="row t" style="margin-top:18px">
+    <div class="cell"><span class="label">CONTACT</span><div class="shell"><iframe src="../Contact.dc.html"></iframe></div></div>
+    <div class="cell"><span class="label">CASE STUDY</span><div class="shell"><iframe src="../Project-ComplyOne.dc.html"></iframe></div></div>
+  </div>
+</body>
+</html>

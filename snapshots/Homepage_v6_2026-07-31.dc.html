@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="./image-slot.js"></script>
+  <style>
+    body { margin:0; background:#060607;
+      background-image:
+        radial-gradient(1200px 800px at 6% -6%, rgba(139,92,246,0.24), transparent 60%),
+        radial-gradient(1000px 700px at 98% 10%, rgba(99,102,241,0.20), transparent 62%),
+        radial-gradient(1000px 620px at 50% 115%, rgba(167,139,250,0.10), transparent 68%);
+      background-attachment: fixed; background-repeat: no-repeat; }
+    a { color:#8B5CF6; text-decoration:none; }
+    a:hover { color:#a78bfa; }
+    @keyframes lcWordIn { from{ opacity:0; transform:translate(var(--dx,0),var(--dy,0)); } to{ opacity:0.55; transform:translate(0,0); } }
+    @keyframes lcCardIn { from{ opacity:0; transform:translateY(10px); } to{ opacity:1; transform:translateY(0); } }
+    @keyframes lcLineGrow { from{ transform:scaleY(0); } to{ transform:scaleY(1); } }
+    @keyframes lcFade { from{ opacity:0; } to{ opacity:1; } }
+    @keyframes pulseDot { 0%{ box-shadow:0 0 0 0 rgba(139,92,246,.35); } 16%{ box-shadow:0 0 0 7px rgba(139,92,246,0); } 100%{ box-shadow:0 0 0 0 rgba(139,92,246,0); } }
+    @keyframes pulseDotSubtle { 0%,100%{ transform:scale(1); opacity:0.65; box-shadow:0 0 0 2px rgba(139,92,246,0.18); } 50%{ transform:scale(1.15); opacity:1; box-shadow:0 0 0 3px rgba(139,92,246,0.28); } }
+    @keyframes floatBob { from{ transform:translateY(0); } to{ transform:translateY(-10px); } }
+    @keyframes orbitA { 0%{ transform:translate(-25%,-45%) scale(1); } 20%{ transform:translate(120%,-40%) scale(1.15); } 40%{ transform:translate(150%,90%) scale(0.95); } 60%{ transform:translate(45%,130%) scale(1.2); } 80%{ transform:translate(-30%,55%) scale(1); } 100%{ transform:translate(-25%,-45%) scale(1); } }
+    @keyframes orbitB { 0%{ transform:translate(150%,110%) scale(1.05); } 20%{ transform:translate(-30%,95%) scale(0.95); } 40%{ transform:translate(-35%,-40%) scale(1.15); } 60%{ transform:translate(90%,-50%) scale(1); } 80%{ transform:translate(165%,25%) scale(1.1); } 100%{ transform:translate(150%,110%) scale(1.05); } }
+    @keyframes orbitC { 0%{ transform:translate(60%,130%) scale(1); } 25%{ transform:translate(160%,15%) scale(1.12); } 50%{ transform:translate(20%,-50%) scale(0.92); } 75%{ transform:translate(-35%,70%) scale(1.18); } 100%{ transform:translate(60%,130%) scale(1); } }
+    @keyframes floatBobSmall { from{ transform:translateY(0); } to{ transform:translateY(-3px); } }
+    @keyframes wordFloat { 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-4px); } }
+    @keyframes fadeUpWord { from{ opacity:0; transform:translateY(16px); } to{ opacity:1; transform:translateY(0); } }
+    @keyframes dotPulse { 0%,100%{ opacity:0.15; transform:scale(1); } 50%{ opacity:0.55; transform:scale(1.4); } }
+    a, button, [role="button"] { cursor:pointer; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior:auto; } }
+  </style>
+</helmet>
+<div style="{{ rootStyle }}">
+
+  <nav style="{{ navStyle }}">
+    <div style="{{ navInnerStyle }}">
+      <div style="display:flex;align-items:center;gap:12px;position:relative;z-index:1">
+        <span style="{{ logoMarkStyle }}"><span style="{{ logoMarkTextStyle }}">PL</span></span>
+        <span style="font-family:'Geist',sans-serif;font-weight:600;font-size:16px;color:#fff;letter-spacing:-0.01em">Priyanka Lakkad</span>
+      </div>
+      <div style="{{ burgerStyle }}" onClick="{{ toggleMenu }}" role="button" tabindex="0" aria-label="Menu">
+        <sc-for list="{{ burgerBars }}" as="bb" hint-placeholder-count="3">
+          <span style="{{ bb.style }}"></span>
+        </sc-for>
+      </div>
+      <div style="{{ navLinksStyle }}" onClick="{{ closeMenu }}">
+        <a href="#work" style="{{ navLinkStyle }}" style-hover="color:#a78bfa">Work</a>
+        <a href="About.dc.html" style="{{ navLinkStyle }}" style-hover="color:#a78bfa">About</a>
+        <a href="#resume" style="{{ navLinkStyle }}" style-hover="color:#a78bfa">Resume</a>
+        <a href="Contact.dc.html" style="{{ navLinkStyle }}" style-hover="color:#a78bfa">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <section style="{{ heroSectionStyle }}">
+    <div id="hero-copy" style="{{ heroLeftStyle }}">
+      <div style="display:flex;align-items:center;gap:8px">
+        <span style="{{ availableDotStyle }}"></span>
+        <span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.16em;color:rgba(255,255,255,0.55)">AVAILABLE FOR FULL-TIME OPPORTUNITIES</span>
+      </div>
+      <h1 style="{{ headlineStyle }}">
+        <sc-for list="{{ headlineWords }}" as="hw" hint-placeholder-count="4">
+          <span style="{{ hw.style }}">{{ hw.text }}</span>
+        </sc-for>
+      </h1>
+      <p style="{{ heroCopyStyle }}">I design AI-powered enterprise products that help teams organize complexity into intelligent workflows and make better decisions.</p>
+      <div style="display:flex;gap:14px;margin-top:12px;flex-wrap:wrap">
+        <a href="#work" style="{{ primaryBtnStyle }}" style-hover="background-position:0% 0;box-shadow:0 0 0 4px rgba(139,92,246,0.22), 0 8px 24px rgba(139,92,246,0.25)" style-focus="outline:none;box-shadow:0 0 0 3px rgba(139,92,246,0.55)">Explore Projects<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+        <a href="#resume" style="{{ secondaryBtnStyle }}" style-hover="border-color:#a78bfa;background-color:rgba(10,8,16,0.55);background-position:0% 0;box-shadow:0 0 0 4px rgba(139,92,246,0.22), 0 8px 24px rgba(139,92,246,0.25)" style-active="background-color:rgba(6,5,10,0.75);border-color:#8B5CF6" style-focus="outline:none;box-shadow:0 0 0 3px rgba(139,92,246,0.55)">
+          <span style="{{ resumeDotsWrapStyle }}">
+            <sc-for list="{{ resumeDots }}" as="d" hint-placeholder-count="15">
+              <span style="{{ d.style }}"></span>
+            </sc-for>
+          </span>
+          <span style="position:relative;z-index:1;display:inline-flex;align-items:center;gap:8px">View Resume<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+        </a>
+      </div>
+    </div>
+
+    <div id="hero-art" style="{{ heroRightStyle }}">
+      <canvas id="hero-graph" style="{{ heroCanvasStyle }}"></canvas>
+    </div>
+  </section>
+
+  <section style="{{ trustSectionStyle }}" data-reveal-key="trust">
+    <div style="{{ trustInnerStyle }}">
+      <sc-for list="{{ metaCols }}" as="m" hint-placeholder-count="2">
+        <div style="display:flex;flex-direction:column;gap:8px;min-width:150px">
+          <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.12em;color:rgba(255,255,255,0.4)">{{ m.label }}</span>
+          <span style="font-size:15px;color:#fff;font-weight:500">{{ m.value }}</span>
+        </div>
+      </sc-for>
+      <div style="{{ logosBlockStyle }}">
+        <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.14em;color:rgba(255,255,255,0.4)">COMPANIES I'VE WORKED AT</span>
+        <div style="{{ logosRowStyle }}">
+          <sc-for list="{{ logos }}" as="lg" hint-placeholder-count="6">
+            <div style="{{ lg.floatWrapStyle }}">
+              <div style="{{ lg.wrapStyle }}" style-hover="filter:grayscale(0) sepia(1) hue-rotate(220deg) saturate(3) opacity(0.9)">
+                <image-slot id="{{ lg.id }}" shape="rounded" radius="8" placeholder="logo"></image-slot>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work" style="{{ projectsSectionStyle }}">
+    <div style="{{ projectsHeaderStyle }}">
+      <span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.14em;color:rgba(255,255,255,0.45)">SELECTED PROJECTS</span>
+    </div>
+
+    <sc-for list="{{ projects }}" as="p" hint-placeholder-count="5">
+      <a href="{{ p.href }}" style="{{ p.cardStyle }}" style-hover="transform:translateY(-4px);border-color:rgba(139,92,246,0.5);background:rgba(139,92,246,0.05);box-shadow:0 26px 60px rgba(0,0,0,0.9), 0 12px 40px rgba(139,92,246,0.45)" data-reveal-key="{{ p.slotId }}">
+        <div style="{{ p.leftColStyle }}">
+          <span style="font-family:'Geist Mono',monospace;font-size:13px;color:#8B5CF6;font-weight:600">{{ p.index }}</span>
+        </div>
+        <div style="{{ p.mediaStyle }}">
+          <image-slot id="{{ p.slotId }}" shape="rounded" radius="14" placeholder="{{ p.placeholder }}" style="{{ p.mediaInnerStyle }}" style-hover="transform:scale(1.06)"></image-slot>
+        </div>
+        <div style="{{ p.bodyStyle }}">
+          <h3 style="font-size:22px;font-weight:600;color:#fff;margin:0;letter-spacing:-0.01em">{{ p.title }}</h3>
+          <p style="font-size:15px;line-height:1.55;color:rgba(255,255,255,0.55);margin:0;max-width:420px">{{ p.desc }}</p>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
+            <sc-for list="{{ p.chips }}" as="chip" hint-placeholder-count="2">
+              <span style="background:rgba(139,92,246,0.10);color:#a78bfa;font-size:12px;padding:6px 12px;border-radius:999px;font-weight:500">{{ chip }}</span>
+            </sc-for>
+          </div>
+        </div>
+        <div style="{{ p.metricsStyle }}">
+          <div style="display:flex;flex-direction:column;gap:2px">
+            <span style="font-size:28px;font-weight:700;color:#fff;letter-spacing:-0.01em">{{ p.m1v }}</span>
+            <span style="font-size:13px;color:rgba(255,255,255,0.45)">{{ p.m1l }}</span>
+          </div>
+          <div style="{{ p.dividerStyle }}"></div>
+          <div style="display:flex;flex-direction:column;gap:2px">
+            <span style="font-size:28px;font-weight:700;color:#fff;letter-spacing:-0.01em">{{ p.m2v }}</span>
+            <span style="font-size:13px;color:rgba(255,255,255,0.45)">{{ p.m2l }}</span>
+          </div>
+          <div style="{{ p.arrowBtnStyle }}" style-hover="border-color:#a78bfa;background:rgba(139,92,246,0.15);transform:translate(2px,-2px);box-shadow:0 0 16px rgba(139,92,246,0.35)" tabindex="0" style-focus="outline:none;box-shadow:0 0 0 3px rgba(139,92,246,0.55)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg>
+          </div>
+        </div>
+      </a>
+    </sc-for>
+  </section>
+
+  <section id="contact" style="{{ contactSectionStyle }}" data-reveal-key="contact">
+    <div style="{{ contactCardStyle }}">
+    <sc-for list="{{ contactBlobs }}" as="b" hint-placeholder-count="3">
+      <span style="{{ b.style }}"></span>
+    </sc-for>
+    <div style="{{ contactLeftStyle }}">
+      <h2 style="{{ contactHeadlineStyle }}">Let's build intelligent systems together.</h2>
+      <p style="font-size:15px;color:rgba(255,255,255,0.5);margin:0">Open to full-time opportunities and meaningful collaborations.</p>
+    </div>
+    <div style="{{ contactRightStyle }}">
+      <a href="Contact.dc.html" style="{{ primaryBtnStyle }}" style-hover="background-position:0% 0;box-shadow:0 0 0 4px rgba(139,92,246,0.22), 0 8px 24px rgba(139,92,246,0.25)" style-focus="outline:none;box-shadow:0 0 0 3px rgba(139,92,246,0.55)">Let's Connect<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+      <a href="#resume" style="{{ secondaryBtnStyle }}" style-hover="border-color:#a78bfa;background-color:rgba(10,8,16,0.55);background-position:0% 0;box-shadow:0 0 0 4px rgba(139,92,246,0.22), 0 8px 24px rgba(139,92,246,0.25)" style-active="background-color:rgba(6,5,10,0.75);border-color:#8B5CF6" style-focus="outline:none;box-shadow:0 0 0 3px rgba(139,92,246,0.55)">
+        <span style="{{ resumeDotsWrapStyle }}">
+          <sc-for list="{{ resumeDots }}" as="d" hint-placeholder-count="15">
+            <span style="{{ d.style }}"></span>
+          </sc-for>
+        </span>
+        <span style="position:relative;z-index:1;display:inline-flex;align-items:center;gap:8px">View Resume<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+      </a>
+    </div>
+    </div>
+  </section>
+
+  <footer style="{{ footerStyle }}">
+    <div style="{{ footerInnerStyle }}">
+      <div style="{{ footerLeftStyle }}">
+        <span style="{{ logoMarkStyle }}"><span style="{{ logoMarkTextStyle }}">PL</span></span>
+        <span style="font-size:13px;color:rgba(255,255,255,0.4)">© 2026 Priyanka Lakkad</span>
+      </div>
+      <div style="{{ footerNavStyle }}">
+        <a href="#work" style="{{ footerNavLinkStyle }}" style-hover="color:#a78bfa">Work</a>
+        <a href="About.dc.html" style="{{ footerNavLinkStyle }}" style-hover="color:#a78bfa">About</a>
+        <a href="#resume" style="{{ footerNavLinkStyle }}" style-hover="color:#a78bfa">Resume</a>
+        <a href="Contact.dc.html" style="{{ footerNavLinkStyle }}" style-hover="color:#a78bfa">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <div id="scroll-progress-bar" style="{{ scrollProgressStyle }}"></div>
+
+  <div style="{{ backToTopStyle }}">
+    <div style="{{ backToTopInnerStyle }}" style-hover="border-color:#a78bfa;background:rgba(139,92,246,0.22);box-shadow:0 8px 22px rgba(0,0,0,0.4), 0 0 16px rgba(139,92,246,0.35)" style-focus="outline:none;box-shadow:0 0 0 3px rgba(139,92,246,0.55)" onClick="{{ scrollToTop }}" role="button" tabindex="0" aria-label="Back to top">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2.4"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+    </div>
+  </div>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;energyLevel&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;balanced&quot;,&quot;options&quot;:[&quot;calm&quot;,&quot;balanced&quot;,&quot;electric&quot;],&quot;tsType&quot;:&quot;'calm'|'balanced'|'electric'&quot;,&quot;section&quot;:&quot;Feel&quot;},&quot;heroStyle&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;panel&quot;,&quot;options&quot;:[&quot;panel&quot;,&quot;glass&quot;,&quot;minimal&quot;],&quot;tsType&quot;:&quot;'panel'|'glass'|'minimal'&quot;,&quot;section&quot;:&quot;Feel&quot;},&quot;projectLayout&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;grid&quot;,&quot;options&quot;:[&quot;row&quot;,&quot;grid&quot;],&quot;tsType&quot;:&quot;'row'|'grid'&quot;,&quot;section&quot;:&quot;Feel&quot;}}">
+const svgIcon = (size, children) => React.createElement('svg', { width: size, height: size, viewBox: '0 0 24 24', fill: 'none', stroke: '#a78bfa', strokeWidth: 2 }, children);
+const ICONS = {
+  gear: svgIcon(14, [React.createElement('circle', { key: 1, cx: 12, cy: 12, r: 3 }), React.createElement('path', { key: 2, d: 'M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 11-4 0v-.09a1.65 1.65 0 00-1-1.51 1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 110-4h.09a1.65 1.65 0 001.51-1 1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06a1.65 1.65 0 001.82.33h0A1.65 1.65 0 009.99 3.1V3a2 2 0 114 0v.09a1.65 1.65 0 001 1.51h0a1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82v0c.26.6.82 1 1.48 1H21a2 2 0 110 4h-.09a1.65 1.65 0 00-1.51 1z' })]),
+  nodes: svgIcon(14, [React.createElement('circle', { key: 1, cx: 6, cy: 6, r: 2.5 }), React.createElement('circle', { key: 2, cx: 18, cy: 6, r: 2.5 }), React.createElement('circle', { key: 3, cx: 12, cy: 18, r: 2.5 }), React.createElement('path', { key: 4, d: 'M8 7l3 9M16 7l-3 9' })]),
+  person: svgIcon(14, [React.createElement('circle', { key: 1, cx: 12, cy: 8, r: 3.5 }), React.createElement('path', { key: 2, d: 'M5 20c1-4 4-6 7-6s6 2 7 6' })]),
+  bars: svgIcon(14, [React.createElement('path', { key: 1, d: 'M5 19V10M12 19V5M19 19v-7' })]),
+  target: svgIcon(14, [React.createElement('circle', { key: 1, cx: 12, cy: 12, r: 8 }), React.createElement('circle', { key: 2, cx: 12, cy: 12, r: 3.5 })]),
+  box: svgIcon(16, [React.createElement('path', { key: 1, d: 'M12 2l8 4.5v9L12 20l-8-4.5v-9z' }), React.createElement('path', { key: 2, d: 'M4 6.5L12 11l8-4.5M12 11v9' })]),
+  shield: svgIcon(16, [React.createElement('path', { key: 1, d: 'M12 3l8 3v6c0 5-4 8-8 9-4-1-8-4-8-9V6z' })]),
+  bot: svgIcon(16, [React.createElement('rect', { key: 1, x: 4, y: 8, width: 16, height: 11, rx: 2 }), React.createElement('path', { key: 2, d: 'M12 8V4M9 4h6' }), React.createElement('circle', { key: 3, cx: 9, cy: 13, r: 1.2, fill: '#a78bfa' }), React.createElement('circle', { key: 4, cx: 15, cy: 13, r: 1.2, fill: '#a78bfa' })]),
+  flag: svgIcon(16, [React.createElement('path', { key: 1, d: 'M5 21V4' }), React.createElement('path', { key: 2, d: 'M5 5h13l-3 4 3 4H5' })]),
+  cols: svgIcon(16, [React.createElement('rect', { key: 1, x: 5, y: 4, width: 5, height: 16, rx: 1 }), React.createElement('rect', { key: 2, x: 14, y: 4, width: 5, height: 16, rx: 1 })])
+};
+
+const WORD_DEFS = [
+  { label: 'Users', left: 34, top: 6, dx: -30, dy: -20 },
+  { label: 'Compliance', left: 74, top: 15, dx: 34, dy: -18 },
+  { label: 'Research', left: 4, top: 28, dx: -36, dy: 10 },
+  { label: 'AI', left: 52, top: 30, dx: 20, dy: -26 },
+  { label: 'Business', left: 80, top: 37, dx: 38, dy: 14 },
+  { label: 'Data', left: 4, top: 49, dx: -34, dy: -12 },
+  { label: 'Automation', left: 47, top: 53, dx: 0, dy: 30 },
+  { label: 'Risk', left: 82, top: 64, dx: 36, dy: -14 },
+  { label: 'Policies', left: 4, top: 68, dx: -32, dy: 18 },
+  { label: 'Approvals', left: 47, top: 76, dx: 24, dy: 22 },
+  { label: 'Context', left: 32, top: 90, dx: -22, dy: 26 }
+];
+
+const CANVAS_CARD_DEFS = [
+  { label: 'Enterprise AI', icon: ICONS.gear },
+  { label: 'Workflow Automation', icon: ICONS.nodes },
+  { label: 'Human Review', icon: ICONS.person },
+  { label: 'Decision Intelligence', icon: ICONS.bars },
+  { label: 'Business Outcome', icon: ICONS.target }
+];
+
+const LOGO_DEFS = ['Apple', 'Cummins', 'McKesson', 'Best Buy', 'Sherwin-Williams', 'Jaguar Racing'];
+
+const PROJECT_DEFS = [
+  { title: 'Apple Enterprise Initiative', desc: "Designing AI-powered workflow automation tools used across Apple's enterprise teams.", chips: ['Enterprise AI', 'Workflow Automation'], m1v: '25%', m1l: 'faster audit prep', m2v: '35%', m2l: 'reduction in violations', icon: ICONS.box, slotId: 'proj-apple', href: 'Project-Apple.dc.html' },
+  { title: 'ComplyOne', desc: 'AI-driven compliance platform that simplifies research, monitoring and regulatory workflows.', chips: ['Compliance', 'Risk Management'], m1v: '27%', m1l: 'audit prep time saved', m2v: '21%', m2l: 'violation reduction', icon: ICONS.shield, slotId: 'proj-complyone', href: 'Project-ComplyOne.dc.html' },
+  { title: 'Rebatify', desc: 'Agentic rebate management platform that streamlines complex rebate processes.', chips: ['AI Agents', 'Rebate Automation'], m1v: '45%', m1l: 'faster processing', m2v: '25%', m2l: 'increase in accuracy', icon: ICONS.bot, slotId: 'proj-rebatify', href: 'Project-Rebatify.dc.html' },
+  { title: 'Jaguar Racing', desc: 'Interactive installation for London ePrix 2022 that engaged 20,000+ attendees.', chips: ['Experience Design', 'Real-time Systems'], m1v: '20K+', m1l: 'attendees', m2v: '31%', m2l: 'faster setup time', icon: ICONS.flag, slotId: 'proj-jaguar', href: 'Project-Jaguar.dc.html' },
+  { title: 'AI UX Design Pattern Library', desc: 'A collection of 7 reusable patterns for building trustworthy and effective AI experiences.', chips: ['Design Systems', 'AI Patterns'], m1v: '7', m1l: 'patterns', m2v: '50+', m2l: 'applications', icon: ICONS.cols, slotId: 'proj-patternlib', href: 'Project-PatternLibrary.dc.html' }
+];
+
+class Component extends DCLogic {
+  state = { bp: 'desktop', organize: false, captionVisible: false, scrolled: false, revealed: {}, showBackToTop: false };
+
+  componentDidMount() {
+    this.measure();
+    this._onResize = () => this.measure();
+    window.addEventListener('resize', this._onResize);
+    this._organizeTimer = setTimeout(() => this.setState({ organize: true }), 3500);
+    this._captionTimer = setTimeout(() => this.setState({ captionVisible: true }), 3500 + 1800);
+
+    this._reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this._scrollRaf = 0;
+    this._onScroll = () => {
+      if (this._scrollRaf) cancelAnimationFrame(this._scrollRaf);
+      this._scrollRaf = requestAnimationFrame(() => {
+        this._scrollRaf = 0;
+        const y = window.scrollY;
+        const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+        const pct = Math.min(100, (y / max) * 100);
+        if (!this._bar) this._bar = document.getElementById('scroll-progress-bar');
+        if (!this._heroCopy) this._heroCopy = document.getElementById('hero-copy');
+        if (!this._heroArt) this._heroArt = document.getElementById('hero-art');
+        if (this._bar) this._bar.style.width = pct + '%';
+        const inHero = y < 900;
+        const noParallax = this._reduceMotion || this.state.bp === 'mobile';
+        if (noParallax) {
+          if (this._heroCopy && this._heroCopy.style.transform) { this._heroCopy.style.transform = ''; this._heroCopy.style.opacity = ''; }
+          if (this._heroArt && this._heroArt.style.transform) { this._heroArt.style.transform = ''; this._heroArt.style.opacity = ''; }
+        }
+        if (!noParallax && (inHero || this._heroDirty)) {
+          this._heroDirty = inHero;
+          if (this._heroCopy) {
+            this._heroCopy.style.transform = `translate3d(0,${y * 0.14}px,0)`;
+            this._heroCopy.style.opacity = Math.max(0, 1 - y / 620);
+          }
+          if (this._heroArt) {
+            this._heroArt.style.transform = `translate3d(0,${y * -0.07}px,0)`;
+            this._heroArt.style.opacity = Math.max(0, 1 - y / 760);
+          }
+        }
+        const s = y > 8, showTop = y > 500;
+        if (s !== this.state.scrolled || showTop !== this.state.showBackToTop) {
+          this.setState({ scrolled: s, showBackToTop: showTop });
+        }
+      });
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    this._onVisible = () => {
+      if (document.visibilityState !== 'visible') return;
+      if (this._scrollRaf) { cancelAnimationFrame(this._scrollRaf); this._scrollRaf = 0; }
+      this._onScroll();
+      this.initReveals();
+    };
+    document.addEventListener('visibilitychange', this._onVisible);
+    this.initReveals();
+    this.initGraph();
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this._onResize);
+    window.removeEventListener('scroll', this._onScroll);
+    if (this._onVisible) document.removeEventListener('visibilitychange', this._onVisible);
+    if (this._scrollRaf) cancelAnimationFrame(this._scrollRaf);
+    clearTimeout(this._organizeTimer);
+    clearTimeout(this._captionTimer);
+    if (this._graphRaf) cancelAnimationFrame(this._graphRaf);
+    if (this._graphRetry) cancelAnimationFrame(this._graphRetry);
+    if (this._graphMeasure) cancelAnimationFrame(this._graphMeasure);
+    if (this._graphResize) window.removeEventListener('resize', this._graphResize);
+    if (this._graphRO) this._graphRO.disconnect();
+    if (this._io) this._io.disconnect();
+    if (this._graphVis) this._graphVis.disconnect();
+    if (this._revealRetry) clearTimeout(this._revealRetry);
+  }
+  initReveals() {
+    if (this._io) return;
+    this._revealTries = (this._revealTries || 0);
+    const attach = () => {
+      const nodes = document.querySelectorAll('[data-reveal-key]');
+      if (!nodes.length) {
+        if (++this._revealTries > 40) { this.setState({ revealAll: true }); return; }
+        this._revealRetry = setTimeout(attach, 60);
+        return;
+      }
+      this._io = new IntersectionObserver((entries) => {
+        const updates = {};
+        let changed = false;
+        entries.forEach(en => {
+          if (!en.isIntersecting) return;
+          updates[en.target.dataset.revealKey] = true;
+          changed = true;
+          this._io.unobserve(en.target);
+        });
+        if (changed) this.setState(s => ({ revealed: { ...s.revealed, ...updates } }));
+      }, { rootMargin: '0px 0px -8% 0px' });
+      nodes.forEach(n => this._io.observe(n));
+    };
+    attach();
+  }
+  revealStyle(key, delayMs) {
+    const shown = this._reduceMotion || this.state.revealAll || !!this.state.revealed[key];
+    return {
+      opacity: shown ? 1 : 0,
+      transform: shown ? 'translateY(0)' : 'translateY(22px)',
+      transition: this._reduceMotion ? 'none' : `opacity 700ms cubic-bezier(0.2,0.8,0.2,1) ${delayMs || 0}ms, transform 700ms cubic-bezier(0.2,0.8,0.2,1) ${delayMs || 0}ms`
+    };
+  }
+  initGraph() {
+    const canvas = document.getElementById('hero-graph');
+    if (!canvas) { this._graphRetry = requestAnimationFrame(() => this.initGraph()); return; }
+    if (this._graphStarted) return;
+    this._graphStarted = true;
+
+    const PURPLE = '139,92,246';
+    const LAYERS = [
+      [{ y: 0.50 }],
+      [{ y: 0.20 }, { y: 0.50 }, { y: 0.80 }],
+      [{ y: 0.12 }, { y: 0.37 }, { y: 0.63 }, { y: 0.88 }],
+      [{ y: 0.28 }, { y: 0.50 }, { y: 0.72 }],
+      [{ y: 0.50 }]
+    ];
+    const LX = [0.07, 0.30, 0.54, 0.78, 0.96];
+    const nodes = [];
+    LAYERS.forEach((layer, li) => layer.forEach((n, ni) => nodes.push({ nx: LX[li], ny: n.y, layer: li, idx: ni })));
+
+    const edges = [];
+    for (let li = 0; li < LAYERS.length - 1; li++) {
+      const from = nodes.filter(n => n.layer === li);
+      const to = nodes.filter(n => n.layer === li + 1);
+      from.forEach(a => {
+        const sorted = to.slice().sort((p, q) => Math.abs(p.ny - a.ny) - Math.abs(q.ny - a.ny));
+        sorted.slice(0, Math.min(2, sorted.length)).forEach(b => edges.push({ a: nodes.indexOf(a), b: nodes.indexOf(b), layer: li }));
+      });
+      to.forEach(b => {
+        if (!edges.some(e => e.b === nodes.indexOf(b))) {
+          const nearest = from.slice().sort((p, q) => Math.abs(p.ny - b.ny) - Math.abs(q.ny - b.ny))[0];
+          edges.push({ a: nodes.indexOf(nearest), b: nodes.indexOf(b), layer: li });
+        }
+      });
+    }
+
+    const rand = (seed) => { let s = seed; return () => { s = (s * 16807) % 2147483647; return s / 2147483647; }; };
+    const r = rand(97);
+    const DOTS = 52;
+    const dots = Array.from({ length: DOTS }, (_, i) => ({
+      sx: 0.05 + r() * 0.9, sy: 0.06 + r() * 0.88,
+      amp: 3 + r() * 5, phase: r() * Math.PI * 2, speed: 0.00016 + r() * 0.00022,
+      node: i < nodes.length ? i : null, breathe: r() * Math.PI * 2
+    }));
+
+    const ctx = canvas.getContext('2d');
+    let W = 0, H = 0, PAD = 0;
+    const resize = () => {
+      const rect = canvas.getBoundingClientRect();
+      const dpr = Math.min(2, window.devicePixelRatio || 1);
+      W = rect.width; H = rect.height;
+      canvas.width = Math.max(1, Math.round(W * dpr));
+      canvas.height = Math.max(1, Math.round(H * dpr));
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      PAD = Math.min(14, W * 0.025);
+      const cx = PAD + 0.5 * (W - PAD * 2), cy = PAD + 0.5 * (H - PAD * 2);
+      const rx = W * 0.52, ry = H * 0.52;
+      grid.length = 0;
+      for (let x = 2; x < W - 2; x += 26) {
+        for (let y = 2; y < H - 2; y += 26) {
+          const dx = (x - cx) / rx, dy = (y - cy) / ry;
+          const fall = Math.max(0, 1 - Math.sqrt(dx * dx + dy * dy) * 1.05);
+          if (fall <= 0.03) continue;
+          grid.push({ x, y, a: 0.16 * fall * fall });
+        }
+      }
+    };
+    const grid = [];
+    const safeResize = () => {
+      const rect = canvas.getBoundingClientRect();
+      if (rect.width < 40 || rect.height < 40) { this._graphMeasure = requestAnimationFrame(safeResize); return; }
+      resize();
+    };
+    this._graphMeasure = requestAnimationFrame(safeResize);
+    this._graphResize = resize;
+    window.addEventListener('resize', resize);
+    if (window.ResizeObserver) {
+      this._graphRO = new ResizeObserver(() => resize());
+      this._graphRO.observe(canvas);
+    }
+
+    const px = (nx) => PAD + nx * (W - PAD * 2);
+    const py = (ny) => PAD + ny * (H - PAD * 2);
+    const easeInOut = (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    const clamp01 = (v) => v < 0 ? 0 : v > 1 ? 1 : v;
+
+    const SCATTER_MS = 1000, MORPH_MS = 1800, LINE_DELAY = 1200, LINE_MS = 900;
+    const reduce = this._reduceMotion;
+    const speedScale = ({ calm: 1.45, balanced: 1, electric: 0.7 })[this.props.energyLevel ?? 'balanced'];
+    const start = performance.now();
+
+    let visible = true;
+    if (window.IntersectionObserver) {
+      this._graphVis = new IntersectionObserver((en) => { visible = en[0].isIntersecting; });
+      this._graphVis.observe(canvas);
+    }
+
+    const frame = (now) => {
+      if (!visible) { this._graphRaf = requestAnimationFrame(frame); return; }
+      const t = reduce ? 99999 : now - start;
+      const morph = easeInOut(clamp01((t - SCATTER_MS) / MORPH_MS));
+      const lineA = clamp01((t - SCATTER_MS - LINE_DELAY) / LINE_MS);
+      ctx.clearRect(0, 0, W, H);
+
+      const gx = px(0.5), gy = py(0.5);
+      const ambR = Math.min(W, H) * 0.62;
+      const amb = ctx.createRadialGradient(gx, gy, 0, gx, gy, ambR);
+      amb.addColorStop(0, `rgba(${PURPLE},0.17)`);
+      amb.addColorStop(0.45, `rgba(${PURPLE},0.075)`);
+      amb.addColorStop(0.78, `rgba(${PURPLE},0.02)`);
+      amb.addColorStop(1, `rgba(${PURPLE},0)`);
+      ctx.beginPath();
+      ctx.arc(gx, gy, ambR, 0, Math.PI * 2);
+      ctx.fillStyle = amb;
+      ctx.fill();
+
+      const gridFade = 0.35 + 0.65 * morph;
+      for (let i = 0; i < grid.length; i++) {
+        const g = grid[i];
+        ctx.beginPath();
+        ctx.arc(g.x, g.y, 1.15, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255,255,255,${g.a * gridFade})`;
+        ctx.fill();
+      }
+
+      const pos = [];
+      dots.forEach(d => {
+        const drift = reduce ? 0 : Math.sin(now * d.speed + d.phase) * d.amp;
+        const drift2 = reduce ? 0 : Math.cos(now * d.speed * 0.8 + d.phase) * d.amp * 0.7;
+        const sxp = px(d.sx) + drift, syp = py(d.sy) + drift2;
+        if (d.node === null) {
+          const cx = px(0.5), cy = py(0.5);
+          const x = sxp + (cx - sxp) * morph * 0.4;
+          const y = syp + (cy - syp) * morph * 0.4;
+          const a = 0.32 * (1 - morph) + 0.17 * morph;
+          ctx.beginPath();
+          ctx.arc(x, y, 1.4 - 0.35 * morph, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${PURPLE},${a})`;
+          ctx.fill();
+          return;
+        }
+        const n = nodes[d.node];
+        const breathe = reduce ? 0 : Math.sin(now * 0.0006 / speedScale + d.breathe) * 1.1 * morph;
+        const tx = px(n.nx), ty = py(n.ny) + breathe;
+        pos[d.node] = { x: sxp + (tx - sxp) * morph, y: syp + (ty - syp) * morph };
+      });
+
+      if (lineA > 0) {
+        ctx.lineWidth = 1;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        edges.forEach(e => {
+          const a = pos[e.a], b = pos[e.b];
+          if (!a || !b) return;
+          const grad = ctx.createLinearGradient(a.x, a.y, b.x, b.y);
+          grad.addColorStop(0, `rgba(255,255,255,${0.05 * lineA})`);
+          grad.addColorStop(0.5, `rgba(${PURPLE},${0.30 * lineA})`);
+          grad.addColorStop(1, `rgba(255,255,255,${0.05 * lineA})`);
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          const mx = (a.x + b.x) / 2;
+          ctx.bezierCurveTo(mx, a.y, mx, b.y, b.x, b.y);
+          ctx.strokeStyle = grad;
+          ctx.stroke();
+        });
+      }
+
+      const pulseStart = SCATTER_MS + MORPH_MS + 700;
+      if (!reduce && t > pulseStart) {
+        const period = 7000 * speedScale;
+        const maxLayer = LAYERS.length - 2;
+        const cyc = ((t - pulseStart) % period) / period;
+        ctx.save();
+        edges.forEach(e => {
+          const span = 1 / (maxLayer + 1);
+          const win0 = e.layer * span, win1 = win0 + span * 1.25;
+          if (cyc < win0 || cyc > win1) return;
+          const lp = clamp01((cyc - win0) / (win1 - win0));
+          const a = pos[e.a], b = pos[e.b];
+          if (!a || !b) return;
+          const mx = (a.x + b.x) / 2;
+          const bez = (p0, p1, p2, p3, tt) => {
+            const u = 1 - tt;
+            return u * u * u * p0 + 3 * u * u * tt * p1 + 3 * u * tt * tt * p2 + tt * tt * tt * p3;
+          };
+          const x = bez(a.x, mx, mx, b.x, lp);
+          const y = bez(a.y, a.y, b.y, b.y, lp);
+          const fade = Math.sin(lp * Math.PI);
+          const g = ctx.createRadialGradient(x, y, 0, x, y, 9);
+          g.addColorStop(0, `rgba(${PURPLE},${0.55 * fade})`);
+          g.addColorStop(1, `rgba(${PURPLE},0)`);
+          ctx.beginPath();
+          ctx.arc(x, y, 9, 0, Math.PI * 2);
+          ctx.fillStyle = g;
+          ctx.fill();
+          ctx.beginPath();
+          ctx.arc(x, y, 2.1, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(216,201,252,${0.9 * fade})`;
+          ctx.fill();
+        });
+        ctx.restore();
+      }
+
+      nodes.forEach((n, i) => {
+        const p = pos[i];
+        if (!p) return;
+        const isHub = n.layer === 0 || n.layer === LAYERS.length - 1;
+        const rCore = isHub ? 4.2 : 3;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, rCore + 3.4, 0, Math.PI * 2);
+        ctx.fillStyle = '#060607';
+        ctx.fill();
+
+        if (morph > 0.35) {
+          const halo = ctx.createRadialGradient(p.x, p.y, rCore, p.x, p.y, rCore + 11);
+          halo.addColorStop(0, `rgba(${PURPLE},${0.22 * morph})`);
+          halo.addColorStop(1, `rgba(${PURPLE},0)`);
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, rCore + 11, 0, Math.PI * 2);
+          ctx.fillStyle = halo;
+          ctx.fill();
+        }
+
+        if (isHub && morph > 0.45) {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, rCore + 4.6, 0, Math.PI * 2);
+          ctx.strokeStyle = `rgba(${PURPLE},${0.28 * morph})`;
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, rCore, 0, Math.PI * 2);
+        ctx.fillStyle = isHub ? `rgba(196,176,251,${0.55 + 0.4 * morph})` : `rgba(${PURPLE},${0.55 + 0.45 * morph})`;
+        ctx.fill();
+      });
+
+      this._graphRaf = requestAnimationFrame(frame);
+    };
+    this._graphRaf = requestAnimationFrame(frame);
+  }
+  scrollToTop() {
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+    if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
+  }
+  measure() {
+    const w = window.innerWidth;
+    const bp = w < 768 ? 'mobile' : w < 1080 ? 'tablet' : 'desktop';
+    if (bp !== this.state.bp) this.setState({ bp });
+  }
+
+  renderVals() {
+    const bp = this.state.bp;
+    const isDesktop = bp === 'desktop';
+    const isMobile = bp === 'mobile';
+    const pad = isMobile ? 20 : bp === 'tablet' ? 48 : 120;
+    const organize = this.state.organize;
+    const captionVisible = this.state.captionVisible;
+
+    const energyLevel = this.props.energyLevel ?? 'balanced';
+    const heroStyleMode = this.props.heroStyle ?? 'panel';
+    const isGrid = (this.props.projectLayout ?? 'row') === 'grid';
+    const ENERGY = {
+      calm: { amp: 0.4, speed: 1.5, glow: 0.55, dot: 0.5 },
+      balanced: { amp: 1, speed: 1, glow: 1, dot: 1 },
+      electric: { amp: 1.8, speed: 0.6, glow: 1.7, dot: 1.8 }
+    }[energyLevel];
+
+    const rootStyle = { background: 'transparent', color: '#fff', fontFamily: "'Geist',sans-serif", minHeight: '100vh', overflowX: 'hidden' };
+
+    const scrolled = this.state.scrolled;
+    const menuOpen = !!this.state.menuOpen;
+    const toggleMenu = () => this.setState({ menuOpen: !this.state.menuOpen });
+    const closeMenu = () => { if (this.state.menuOpen) this.setState({ menuOpen: false }); };
+    const burgerStyle = {
+      display: isMobile ? 'inline-flex' : 'none', flexDirection: 'column', justifyContent: 'center',
+      alignItems: 'center', gap: 5, width: 44, height: 44, marginRight: -10, borderRadius: 12,
+      border: '1px solid rgba(139,92,246,0.28)', background: menuOpen ? 'rgba(139,92,246,0.14)' : 'transparent',
+      transition: 'background 180ms ease-out, border-color 180ms ease-out', flexShrink: 0
+    };
+    const burgerBar = (i) => ({
+      width: 18, height: 1.6, borderRadius: 2, background: '#d8c9fc',
+      transition: 'transform 240ms cubic-bezier(0.22,1,0.36,1), opacity 180ms ease-out',
+      transform: menuOpen ? (i === 0 ? 'translateY(6.6px) rotate(45deg)' : i === 2 ? 'translateY(-6.6px) rotate(-45deg)' : 'scaleX(0)') : 'none',
+      opacity: menuOpen && i === 1 ? 0 : 1
+    });
+    const burgerBars = [0, 1, 2].map(i => ({ style: burgerBar(i) }));
+    const navStyle = { position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: scrolled ? '1px solid rgba(255,255,255,0.12)' : '1px solid rgba(255,255,255,0.08)', position: 'sticky', top: 0, zIndex: 30, background: scrolled ? 'rgba(6,6,7,0.78)' : 'rgba(6,6,7,0)', backdropFilter: scrolled ? 'blur(14px)' : 'none', boxShadow: scrolled ? '0 8px 24px rgba(0,0,0,0.28)' : 'none', transition: 'background 220ms ease-out, box-shadow 220ms ease-out, border-color 220ms ease-out', overflow: isMobile ? 'visible' : 'hidden'  };
+    const navInnerStyle = { display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap', maxWidth: 1440, margin: '0 auto', width: '100%', boxSizing: 'border-box', padding: `24px ${pad}px` };
+    const barDotsWrapStyle = { position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none' };
+    const BAR_DOT_LAYOUT = [
+      { x: 22, y: 24, s: 3, o: 0.5 }, { x: 27, y: 66, s: 2.5, o: 0.38 }, { x: 33, y: 40, s: 3, o: 0.45 },
+      { x: 39, y: 78, s: 2.5, o: 0.35 }, { x: 44, y: 20, s: 3, o: 0.48 }, { x: 49, y: 56, s: 3.5, o: 0.5 },
+      { x: 54, y: 30, s: 2.5, o: 0.36 }, { x: 59, y: 72, s: 3, o: 0.44 }, { x: 64, y: 44, s: 2.5, o: 0.38 },
+      { x: 69, y: 24, s: 3, o: 0.46 }, { x: 74, y: 64, s: 2.5, o: 0.34 }, { x: 79, y: 38, s: 3, o: 0.42 },
+      { x: 84, y: 74, s: 2.5, o: 0.32 }, { x: 89, y: 28, s: 3, o: 0.4 }, { x: 94, y: 58, s: 2.5, o: 0.34 },
+      { x: 17, y: 48, s: 2.5, o: 0.36 }
+    ];
+    const barDots = BAR_DOT_LAYOUT.map((d, i) => ({
+      style: {
+        position: 'absolute', left: `${d.x}%`, top: `${d.y}%`, width: d.s, height: d.s, borderRadius: '50%',
+        background: '#8B5CF6', opacity: d.o,
+        animation: this._reduceMotion ? 'none' : `dotPulse ${(4 + (i % 4) * 0.6) * ENERGY.speed}s ease-in-out ${(i % 5) * 0.35}s infinite`
+      }
+    }));
+    const navLinksStyle = isMobile ? {
+      position: 'absolute', top: '100%', left: 0, right: 0, zIndex: 60,
+      display: menuOpen ? 'flex' : 'none', flexDirection: 'column', alignItems: 'stretch', gap: 0,
+      padding: '6px 20px 14px', boxSizing: 'border-box',
+      background: 'rgba(9,8,12,0.97)', backdropFilter: 'blur(16px)',
+      borderBottom: '1px solid rgba(255,255,255,0.08)',
+      boxShadow: '0 18px 40px rgba(0,0,0,0.5)'
+    } : { display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'flex-end', gap: isDesktop ? 36 : 24, marginLeft: 'auto', marginRight: 0, position: 'relative', zIndex: 1 };
+    const footerNavStyle = { display: isMobile ? 'none' : 'flex', flexWrap: 'wrap', gap: isMobile ? '10px 18px' : 28 };
+    const navLinkStyle = { fontSize: 14, color: 'rgba(255,255,255,0.75)', transition: 'color 180ms ease-out' , ...(isMobile ? { display: 'block', width: '100%', padding: '14px 2px', fontSize: 16, borderBottom: '1px solid rgba(255,255,255,0.06)' } : {}) };
+    const navLinkHoverStyle = { color: '#a78bfa' };
+    const footerNavLinkStyle = { fontSize: 13, color: 'rgba(255,255,255,0.6)', transition: 'color 180ms ease-out' };
+    const focusRingStyle = { outline: '2px solid #8B5CF6', outlineOffset: -2 };
+    const logoMarkStyle = {
+      width: 36, height: 36, borderRadius: '50%', boxSizing: 'border-box', flexShrink: 0,
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      border: '1.75px solid rgba(167,139,250,0.55)',
+      background: 'transparent',
+      boxShadow: '0 0 14px rgba(139,92,246,0.18)',
+      fontFamily: "'Geist',sans-serif", fontSize: 12.5, fontWeight: 700, letterSpacing: '0.05em'
+    };
+    const logoMarkTextStyle = {
+      position: 'relative', zIndex: 1,
+      backgroundImage: 'linear-gradient(135deg, #d8c9fc, #a78bfa)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', paddingLeft: '0.05em'
+    };
+    const logoDotsWrapStyle = { position: 'absolute', inset: 0, borderRadius: '50%', overflow: 'hidden', pointerEvents: 'none' };
+    const LOGO_DOT_LAYOUT = [
+      { x: 78, y: 14, s: 2.5, o: 0.5 }, { x: 90, y: 30, s: 2, o: 0.35 }, { x: 12, y: 16, s: 2, o: 0.4 },
+      { x: 85, y: 82, s: 2.5, o: 0.45 }, { x: 10, y: 80, s: 2, o: 0.35 }, { x: 18, y: 90, s: 2, o: 0.3 },
+      { x: 92, y: 58, s: 2, o: 0.3 }
+    ];
+    const logoDots = LOGO_DOT_LAYOUT.map((d, i) => ({
+      style: {
+        position: 'absolute', left: `${d.x}%`, top: `${d.y}%`, width: d.s, height: d.s, borderRadius: '50%',
+        background: '#c4b0fb', opacity: d.o,
+        animation: this._reduceMotion ? 'none' : `dotPulse ${(3 + (i % 4) * 0.4) * ENERGY.speed}s ease-in-out ${(i % 5) * 0.2}s infinite`
+      }
+    }));
+    const dotAnim = this._reduceMotion ? 'none' : `pulseDotSubtle ${1.8 * ENERGY.speed}s ease-in-out infinite`;
+    const activeDotStyle = { width: 6, height: 6, borderRadius: '50%', background: '#8B5CF6', animation: dotAnim };
+    const availableDotStyle = { width: 8, height: 8, borderRadius: '50%', background: '#8B5CF6', animation: dotAnim };
+
+    const heroSectionStyle = { display: 'flex', flexDirection: isDesktop ? 'row' : 'column', gap: isDesktop ? 60 : isMobile ? 0 : 48, padding: `${isMobile ? 40 : 80}px ${pad}px ${isMobile ? 44 : 160}px`, maxWidth: 1440, margin: '0 auto', alignItems: isDesktop ? 'stretch' : 'stretch' };
+    const heroLeftStyle = { flex: isDesktop ? '0 0 46%' : '1 1 auto', display: 'flex', flexDirection: 'column', gap: 22, justifyContent: 'center', maxWidth: 760 };
+    const heroCanvasStyle = { display: 'block', position: 'absolute', inset: 0, width: '100%', height: '100%' };
+    const HERO_STYLE = {
+      panel: { border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.015)', backdropFilter: 'none' },
+      glass: { border: '1px solid rgba(255,255,255,0.18)', background: 'rgba(255,255,255,0.06)', backdropFilter: 'blur(20px)' },
+      minimal: { border: 'none', background: 'transparent', backdropFilter: 'none' }
+    }[heroStyleMode];
+    const heroRightStyle = { display: isMobile ? 'none' : 'block', flex: isDesktop ? '1 1 auto' : '0 0 auto', width: isDesktop ? undefined : '100%', height: 500, padding: 0, position: 'relative', overflow: 'visible', background: 'transparent', border: 'none' };
+    const glowMul = heroStyleMode === 'glass' ? 1.6 : heroStyleMode === 'minimal' ? 0.8 : 1;
+    const glowBlobStyle1 = { position: 'absolute', width: 180, height: 180, borderRadius: '50%', background: '#8B5CF6', opacity: 0.16 * ENERGY.glow * glowMul, filter: 'blur(60px)', top: -40, right: -30, pointerEvents: 'none', animation: this._reduceMotion ? 'none' : `floatBob ${9 * ENERGY.speed}s ease-in-out infinite alternate` };
+    const glowBlobStyle2 = { position: 'absolute', width: 140, height: 140, borderRadius: '50%', background: '#8B5CF6', opacity: 0.12 * ENERGY.glow * glowMul, filter: 'blur(50px)', bottom: -30, left: -20, pointerEvents: 'none', animation: this._reduceMotion ? 'none' : `floatBob ${7 * ENERGY.speed}s ease-in-out infinite alternate-reverse` };
+
+    const headlineStyle = { fontSize: isMobile ? 40 : bp === 'tablet' ? 56 : 76, fontWeight: 700, lineHeight: 0.98, letterSpacing: '-0.01em', maxWidth: 620, margin: 0, display: 'flex', flexWrap: 'wrap', columnGap: '0.28em', rowGap: 0 };
+    const HEADLINE_WORDS = ['Designing', 'intelligent', 'enterprise', 'systems.'];
+    const headlineWords = HEADLINE_WORDS.map((text, i) => ({
+      text,
+      style: {
+        display: 'inline-block',
+        lineHeight: 0.98,
+        color: i === HEADLINE_WORDS.length - 1 ? '#8B5CF6' : undefined,
+        opacity: this._reduceMotion ? 1 : 0,
+        animation: this._reduceMotion ? 'none' : `fadeUpWord 0.7s cubic-bezier(0.2,0.8,0.2,1) ${i * 0.08}s both`
+      }
+    }));
+    const heroCopyStyle = { fontSize: isMobile ? 16 : 19, lineHeight: 1.55, color: 'rgba(255,255,255,0.55)', maxWidth: 540, margin: 0, fontWeight: 400 };
+
+    const primaryBtnStyle = { display: 'inline-flex', alignItems: 'center', gap: 8, height: 48, boxSizing: 'border-box', padding: '0 22px', borderRadius: 14, color: '#fff', fontSize: 15, fontWeight: 500, backgroundImage: 'linear-gradient(110deg, #8B5CF6 35%, #ab84f9 50%, #8B5CF6 65%)', backgroundSize: '250% 100%', backgroundPosition: '100% 0', transition: 'background-position 500ms ease, box-shadow 180ms ease-out' };
+    const primaryBtnHoverStyle = { backgroundPosition: '0% 0', boxShadow: '0 0 0 4px rgba(139,92,246,0.22), 0 8px 24px rgba(139,92,246,0.25)' };
+    const secondaryBtnStyle = { display: 'inline-flex', alignItems: 'center', gap: 8, height: 48, boxSizing: 'border-box', padding: '0 22px', borderRadius: 14, border: '1.5px solid #8B5CF6', color: '#fff', fontSize: 15, fontWeight: 500, position: 'relative', overflow: 'hidden', backgroundColor: 'transparent', backgroundImage: 'linear-gradient(110deg, rgba(139,92,246,0.12) 35%, rgba(196,181,253,0.22) 50%, rgba(139,92,246,0.12) 65%)', backgroundSize: '250% 100%', backgroundPosition: '100% 0', transition: 'background-position 500ms ease, background-color 180ms ease-out, border-color 180ms ease-out, box-shadow 180ms ease-out' };
+    const secondaryBtnHoverStyle = { borderColor: '#a78bfa', backgroundColor: 'rgba(10,8,16,0.55)', backgroundPosition: '0% 0', boxShadow: '0 0 0 4px rgba(139,92,246,0.22), 0 8px 24px rgba(139,92,246,0.25)' };
+    const resumeDotsWrapStyle = { position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none', borderRadius: 14 };
+    const RESUME_DOT_LAYOUT = [
+      { x: 62, y: 12, s: 3, o: 0.5 }, { x: 78, y: 8, s: 2, o: 0.35 }, { x: 90, y: 18, s: 4, o: 0.55 },
+      { x: 70, y: 30, s: 2, o: 0.3 }, { x: 85, y: 38, s: 3, o: 0.45 }, { x: 60, y: 46, s: 2, o: 0.35 },
+      { x: 95, y: 52, s: 3, o: 0.5 }, { x: 76, y: 58, s: 2, o: 0.3 }, { x: 66, y: 70, s: 4, o: 0.5 },
+      { x: 88, y: 76, s: 2, o: 0.35 }, { x: 72, y: 88, s: 3, o: 0.45 }, { x: 94, y: 92, s: 2, o: 0.3 },
+      { x: 56, y: 60, s: 2, o: 0.25 }, { x: 82, y: 20, s: 2, o: 0.3 }
+    ];
+    const resumeDots = [].map((d, i) => ({
+      style: {
+        position: 'absolute', left: `${d.x}%`, top: `${d.y}%`, width: d.s, height: d.s, borderRadius: '50%',
+        background: '#8B5CF6', opacity: d.o,
+        animation: this._reduceMotion ? 'none' : `dotPulse ${(3 + (i % 5) * 0.4) * ENERGY.speed}s ease-in-out ${(i % 7) * 0.15}s infinite`
+      }
+    }));
+
+    const canvasRowStyle = { display: 'flex', alignItems: 'center', gap: isDesktop ? 16 : 0, flex: 1, minHeight: isMobile ? 260 : 300 };
+    const wordsAreaStyle = { position: 'relative', flex: isDesktop ? '0 0 52%' : '1 1 auto', height: isMobile ? 220 : 280 };
+    const cardsAreaStyle = { display: 'flex', flexDirection: 'column', gap: 0, flex: isDesktop ? '0 0 44%' : '1 1 auto', marginTop: isDesktop ? 0 : 8 };
+
+    const words = WORD_DEFS.map((w) => ({
+      label: w.label,
+      style: {
+        position: 'absolute', left: `${w.left}%`, top: `${w.top}%`,
+        display: 'flex', alignItems: 'center', gap: 6,
+        opacity: organize ? 0 : 0.55,
+        transition: 'opacity 1.8s cubic-bezier(0.2,0.8,0.2,1)',
+        animation: (this._reduceMotion || organize) ? 'none' : `wordFloat ${6 * ENERGY.speed}s ease-in-out infinite`
+      }
+    }));
+
+    const arrowWrapStyle = { flex: '0 0 auto', opacity: organize ? 1 : 0, transition: 'opacity 1.8s cubic-bezier(0.2,0.8,0.2,1)' };
+
+    const canvasCards = CANVAS_CARD_DEFS.map((c, i) => ({
+      label: c.label, icon: c.icon,
+      showLine: i > 0,
+      wrapStyle: { display: 'flex', flexDirection: 'column', alignItems: 'center' },
+      lineStyle: { width: 1.5, height: 14, background: 'rgba(139,92,246,0.3)', opacity: organize ? 1 : 0, transformOrigin: 'top', transition: 'opacity 1.8s cubic-bezier(0.2,0.8,0.2,1)' },
+      cardStyle: { display: 'flex', alignItems: 'center', gap: 10, border: '1px solid rgba(255,255,255,0.12)', borderRadius: 12, padding: '12px 16px', width: '100%', boxSizing: 'border-box', opacity: organize ? 1 : 0, transform: organize ? 'translateY(0)' : 'translateY(8px)', transition: 'opacity 1.8s cubic-bezier(0.2,0.8,0.2,1), transform 1.8s cubic-bezier(0.2,0.8,0.2,1)' },
+      iconWrapStyle: { display: 'flex', alignItems: 'center', justifyContent: 'center', width: 26, height: 26, borderRadius: 7, background: 'rgba(139,92,246,0.12)', flexShrink: 0 }
+    }));
+
+    const captionStyle = { textAlign: 'center', color: '#a78bfa', fontSize: 14, margin: 0, opacity: captionVisible ? undefined : 0, animation: captionVisible ? 'lcFade 300ms ease-out both' : 'none' };
+
+    const trustSectionStyle = { borderTop: '1px solid rgba(255,255,255,0.08)', borderBottom: '1px solid rgba(255,255,255,0.08)', padding: `28px ${pad}px`, ...this.revealStyle('trust', 0) };
+    const trustInnerStyle = { display: 'flex', flexDirection: isDesktop ? 'row' : 'column', justifyContent: 'space-between', alignItems: 'flex-start', gap: isDesktop ? 48 : 28, maxWidth: 1440, margin: '0 auto' };
+    const logosBlockStyle = { display: 'flex', flexDirection: 'column', gap: 8 };
+    const logosRowStyle = { display: 'flex', gap: isMobile ? 16 : 24, flexWrap: isDesktop ? 'nowrap' : 'wrap', alignItems: 'flex-start' };
+    const logos = LOGO_DEFS.map((l, i) => ({
+      label: l, id: `logo-${i}`,
+      floatWrapStyle: { animation: this._reduceMotion ? 'none' : `floatBobSmall ${6 * ENERGY.speed}s ease-in-out infinite alternate` },
+      wrapStyle: { width: 120, height: 48, filter: 'grayscale(1) opacity(0.55)', transition: 'filter 180ms ease-out' },
+      hoverStyle: { filter: 'grayscale(0) sepia(1) hue-rotate(220deg) saturate(3) opacity(0.9)' }
+    }));
+    const metaCols = [
+      { label: 'EXPERTISE', value: 'AI-Powered Enterprise Systems' },
+      { label: 'EXPERIENCE', value: '5+ Years' }
+    ];
+
+    const projectsSectionStyle = isGrid
+      ? { padding: `${isMobile ? 60 : 100}px ${pad}px ${isMobile ? 8 : 100}px`, maxWidth: 1440, margin: '0 auto', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)', gap: isMobile ? 24 : 32 }
+      : { padding: `${isMobile ? 60 : 100}px ${pad}px ${isMobile ? 8 : 100}px`, maxWidth: 1440, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 0 };
+    const projectsHeaderStyle = isGrid
+      ? { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 32, gridColumn: '1 / -1' }
+      : { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 32 };
+
+    const projects = PROJECT_DEFS.map((p, i) => ({
+      ...p,
+      index: String(i + 1).padStart(2, '0'),
+      placeholder: `${p.title} screenshot`,
+      cardStyle: isGrid ? {
+        color: '#fff', textDecoration: 'none',
+        display: 'flex', flexDirection: 'column', gap: 18,
+        padding: 22, borderRadius: 18, border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.02)',
+        position: 'relative',
+        ...this.revealStyle(p.slotId, i * 70),
+        transition: `${this.revealStyle(p.slotId).transition}, transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease, background 220ms ease`
+      } : {
+        color: '#fff', textDecoration: 'none',
+        display: 'flex', flexDirection: isDesktop ? 'row' : 'column', gap: isDesktop ? 32 : 20,
+        alignItems: isDesktop ? 'center' : 'stretch',
+        padding: isMobile ? '28px 0' : '40px 0',
+        borderTop: i === 0 ? '1px solid rgba(255,255,255,0.08)' : 'none',
+        borderBottom: '1px solid rgba(255,255,255,0.08)',
+        ...this.revealStyle(p.slotId, i * 70),
+        transition: `${this.revealStyle(p.slotId).transition}, transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease, background 220ms ease`
+      },
+      cardHoverStyle: { transform: (this._reduceMotion || this.state.revealed[p.slotId]) ? 'translateY(-4px)' : 'translateY(22px)', boxShadow: '0 26px 60px rgba(0,0,0,0.9), 0 12px 40px rgba(139,92,246,0.45)' },
+      leftColStyle: isGrid
+        ? { position: 'absolute', top: 14, left: 14, zIndex: 2, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(6,6,7,0.75)', borderRadius: 8, padding: '4px 10px' }
+        : { display: isDesktop ? 'flex' : 'none', alignItems: 'center', justifyContent: 'center', flex: '0 0 40px', alignSelf: 'stretch' },
+      mediaStyle: isGrid
+        ? { width: '100%', aspectRatio: '16/10', overflow: 'hidden', borderRadius: 14 }
+        : { flex: isDesktop ? '0 0 26%' : '1 1 auto', aspectRatio: isMobile ? '16/10' : '1/1', maxHeight: isDesktop ? 220 : 200, overflow: 'hidden', borderRadius: 14 },
+      mediaInnerStyle: { transform: 'scale(1)', transition: 'transform 500ms cubic-bezier(0.2,0.8,0.2,1)' },
+      mediaHoverStyle: { transform: 'scale(1.06)' },
+      bodyStyle: { flex: '1 1 auto', display: 'flex', flexDirection: 'column', gap: 12, minWidth: 0 },
+      metricsStyle: isGrid
+        ? { display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap', marginTop: 4 }
+        : { display: 'flex', alignItems: 'center', gap: isMobile ? 16 : 28, flex: isDesktop ? '0 0 auto' : '1 1 auto', marginTop: isDesktop ? 0 : 8 },
+      dividerStyle: { width: 1, height: 36, background: 'rgba(255,255,255,0.12)' },
+      arrowBtnStyle: { width: 40, height: 40, borderRadius: '50%', border: '1px solid rgba(139,92,246,0.35)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginLeft: isGrid ? 'auto' : (isDesktop ? 12 : 'auto'), flexShrink: 0, transition: 'border-color 180ms ease-out, background 180ms ease-out, transform 180ms ease-out, box-shadow 180ms ease-out' },
+      arrowBtnHoverStyle: { borderColor: '#a78bfa', background: 'rgba(139,92,246,0.15)', transform: 'translate(2px,-2px)', boxShadow: '0 0 16px rgba(139,92,246,0.35)' }
+    }));
+
+    const contactSectionStyle = { padding: `${isMobile ? 28 : 80}px ${pad}px ${isMobile ? 48 : 80}px`, maxWidth: 1440, margin: '0 auto', position: 'relative', ...this.revealStyle('contact', 0) };
+    const CONTACT_BLOBS = [
+      { c: 'rgba(167,139,250,0.30)', s: 62, x: 0, y: 0, anim: 'orbitA', dur: 26 },
+      { c: 'rgba(99,102,241,0.26)', s: 56, x: 0, y: 0, anim: 'orbitB', dur: 32 },
+      { c: 'rgba(139,92,246,0.22)', s: 70, x: 0, y: 0, anim: 'orbitC', dur: 38 }
+    ];
+    const contactBlobs = CONTACT_BLOBS.map(b => ({
+      style: {
+        position: 'absolute', top: b.y + '%', left: b.x + '%', width: b.s + '%', aspectRatio: '1',
+        borderRadius: '50%', background: 'radial-gradient(closest-side, ' + b.c + ', transparent 72%)',
+        filter: 'blur(28px)', pointerEvents: 'none',
+        animation: this._reduceMotion ? 'none' : b.anim + ' ' + b.dur + 's ease-in-out infinite'
+      }
+    }));
+    const contactCardStyle = {
+      display: 'flex', flexDirection: isDesktop ? 'row' : 'column',
+      justifyContent: 'space-between', alignItems: isDesktop ? 'center' : 'flex-start', gap: 28,
+      padding: isMobile ? '32px 24px' : '44px 48px', borderRadius: 24,
+      backgroundColor: 'rgba(139,92,246,0.07)', border: '1px solid rgba(139,92,246,0.18)',
+      overflow: 'hidden', position: 'relative'
+    };
+    const contactLeftStyle = { display: 'flex', flexDirection: 'column', gap: 14, maxWidth: 560 };
+    const contactHeadlineStyle = { fontSize: isMobile ? 26 : 34, fontWeight: 600, margin: 0, letterSpacing: '-0.01em' };
+    const contactRightStyle = { display: 'flex', gap: 14, flexShrink: 0, flexWrap: 'wrap' };
+    const dotGridStyle = { display: 'grid', gridTemplateColumns: 'repeat(6,1fr)', gap: 8, position: 'absolute', right: pad + 320, top: '50%', transform: 'translateY(-50%)', opacity: 0.6, pointerEvents: 'none' };
+    const dotGrid = Array.from({ length: 30 }, (_, i) => ({
+      i,
+      style: { width: 3 * Math.min(1.6, ENERGY.dot), height: 3 * Math.min(1.6, ENERGY.dot), borderRadius: '50%', background: '#8B5CF6', animation: this._reduceMotion ? 'none' : `dotPulse ${(3 + (i % 5) * 0.4) * ENERGY.speed}s ease-in-out ${(i % 7) * 0.2}s infinite` }
+    }));
+
+    const footerStyle = { display: 'flex', flexDirection: isMobile ? 'column' : 'row', justifyContent: 'space-between', alignItems: isMobile ? 'flex-start' : 'center', gap: 20, borderTop: '1px solid rgba(255,255,255,0.08)', position: 'relative', overflow: 'hidden'  };
+    const footerInnerStyle = { display: 'flex', flexDirection: isMobile ? 'column' : 'row', justifyContent: 'space-between', alignItems: isMobile ? 'flex-start' : 'center', gap: 20, flexWrap: 'wrap', maxWidth: 1440, margin: '0 auto', width: '100%', boxSizing: 'border-box', padding: `28px ${pad}px` };
+    const footerLeftStyle = { display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap' };
+
+    const showBackToTop = this.state.showBackToTop;
+    const backToTopStyle = {
+      position: 'fixed', right: isMobile ? 20 : 32, bottom: isMobile ? 20 : 32, zIndex: 40,
+      opacity: showBackToTop ? 1 : 0, transform: showBackToTop ? 'translateY(0)' : 'translateY(12px)', pointerEvents: showBackToTop ? 'auto' : 'none',
+      transition: 'opacity 220ms ease-out, transform 220ms ease-out'
+    };
+    const backToTopInnerStyle = {
+      width: 44, height: 44, borderRadius: '50%', border: '1px solid rgba(139,92,246,0.35)', background: 'rgba(139,92,246,0.12)', backdropFilter: 'blur(8px)',
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      boxShadow: '0 8px 20px rgba(0,0,0,0.35)',
+      animation: (this._reduceMotion || !showBackToTop) ? 'none' : `floatBobSmall ${2.8 * ENERGY.speed}s ease-in-out infinite alternate`,
+      transition: 'border-color 180ms ease-out, background 180ms ease-out, box-shadow 180ms ease-out'
+    };
+    const scrollProgressStyle = { position: 'fixed', top: 0, left: 0, height: 3, width: '0%', background: 'linear-gradient(90deg, #8B5CF6, #ab84f9)', zIndex: 50 };
+
+    return {
+      isDesktop, rootStyle, navStyle, navInnerStyle, burgerStyle, burgerBars, toggleMenu, closeMenu, barDotsWrapStyle, barDots, navLinksStyle, footerNavStyle, navLinkStyle, navLinkHoverStyle, footerNavLinkStyle, focusRingStyle, logoMarkStyle, logoMarkTextStyle, logoDotsWrapStyle, logoDots, activeDotStyle, availableDotStyle,
+      heroSectionStyle, heroLeftStyle, heroRightStyle, headlineStyle, headlineWords, heroCopyStyle,
+      glowBlobStyle1, glowBlobStyle2, heroCanvasStyle,
+      primaryBtnStyle, primaryBtnHoverStyle, secondaryBtnStyle, secondaryBtnHoverStyle, resumeDotsWrapStyle, resumeDots,
+      canvasRowStyle, wordsAreaStyle, arrowWrapStyle, cardsAreaStyle, words, canvasCards, captionStyle,
+      trustSectionStyle, trustInnerStyle, logosBlockStyle, logosRowStyle, logos, metaCols,
+      projectsSectionStyle, projectsHeaderStyle, projects,
+      contactSectionStyle, contactCardStyle, contactBlobs, contactLeftStyle, contactHeadlineStyle, contactRightStyle, dotGridStyle, dotGrid,
+      footerStyle, footerInnerStyle, footerLeftStyle, backToTopStyle, backToTopInnerStyle, scrollProgressStyle,
+      scrollToTop: () => this.scrollToTop()
+    };
+  }
+}
+
+</script>
+</body>
+</html>

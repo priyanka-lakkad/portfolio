@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  body { margin:0; background:#111114; font-family:system-ui,sans-serif; color:#fff; padding:16px; }
+  h2 { font-size:13px; letter-spacing:.14em; color:#a78bfa; margin:0 0 12px; font-weight:600; }
+  .row { display:flex; gap:14px; align-items:flex-start; }
+  .cell { display:flex; flex-direction:column; gap:8px; }
+  .label { font-size:11px; color:rgba(255,255,255,.55); letter-spacing:.1em; }
+  .frame { width:390px; height:800px; border:0; background:#060607; border-radius:10px; }
+  .scale { width:214px; height:440px; overflow:hidden; border-radius:10px; border:1px solid rgba(255,255,255,.12); }
+  .scale iframe { transform:scale(.55); transform-origin:top left; }
+</style>
+</head>
+<body>
+<h2>MOBILE — 390px</h2>
+<div class="row">
+  <div class="cell"><span class="label">HOME</span><div class="scale"><iframe class="frame" src="../Homepage.dc.html"></iframe></div></div>
+  <div class="cell"><span class="label">ABOUT</span><div class="scale"><iframe class="frame" src="../About.dc.html"></iframe></div></div>
+  <div class="cell"><span class="label">CONTACT</span><div class="scale"><iframe class="frame" src="../Contact.dc.html"></iframe></div></div>
+  <div class="cell"><span class="label">CASE STUDY</span><div class="scale"><iframe class="frame" src="../Project-ComplyOne.dc.html"></iframe></div></div>
+</div>
+</body>
+</html>

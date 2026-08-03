@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="./image-slot.js"></script>
+  <style>
+    body { margin:0; background:#060607; }
+    a { color:#8B5CF6; text-decoration:none; }
+    a:hover { color:#a78bfa; }
+    @keyframes abRise { from{ opacity:0; transform:translateY(18px); } to{ opacity:1; transform:translateY(0); } }
+    @keyframes pulseDotSubtle { 0%,100%{ transform:scale(1); opacity:0.65; box-shadow:0 0 0 2px rgba(139,92,246,0.18); } 50%{ transform:scale(1.15); opacity:1; box-shadow:0 0 0 3px rgba(139,92,246,0.28); } }
+    @keyframes abFloat { from{ transform:translateY(0); } to{ transform:translateY(-3px); } }
+    @keyframes abDotPulse { 0%,100%{ opacity:0.15; transform:scale(1); } 50%{ opacity:0.55; transform:scale(1.4); } }
+    @keyframes abDrift { 0%{ transform:translate(0,0); } 33%{ transform:translate(6px,-9px); } 66%{ transform:translate(-5px,-4px); } 100%{ transform:translate(0,0); } }
+    a, button, [role="button"] { cursor:pointer; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior:auto; } }
+  </style>
+</helmet>
+<div style="{{ rootStyle }}">
+
+
+  <nav style="{{ navStyle }}">
+    <a href="Homepage.dc.html" style="display:flex;align-items:center;gap:12px">
+      <span style="{{ logoMarkStyle }}"><span style="{{ logoMarkTextStyle }}">PL</span></span>
+      <span style="font-family:'Geist',sans-serif;font-weight:600;font-size:16px;color:#fff;letter-spacing:-0.01em">Priyanka Lakkad</span>
+    </a>
+    <div style="{{ navLinksStyle }}">
+      <a href="Homepage.dc.html#work" style="{{ navLinkStyle }}" style-hover="color:#a78bfa">Work</a>
+      <a href="About.dc.html" style="{{ navLinkActiveStyle }}" style-hover="color:#a78bfa">About</a>
+      <a href="Homepage.dc.html#resume" style="{{ navLinkStyle }}" style-hover="color:#a78bfa">Resume</a>
+      <a href="Contact.dc.html" style="{{ navLinkStyle }}" style-hover="color:#a78bfa">Contact</a>
+    </div>
+  </nav>
+
+  <section id="about" style="{{ heroSectionStyle }}">
+    <div style="{{ heroTextStyle }}">
+      <div style="display:flex;align-items:center;gap:8px">
+        <span style="{{ dotStyle }}"></span>
+        <span style="{{ eyebrowStyle }}">ABOUT</span>
+      </div>
+      <h1 style="{{ headlineStyle }}">
+        <sc-for list="{{ headlineWords }}" as="w" hint-placeholder-count="3">
+          <span style="{{ w.style }}">{{ w.text }}</span>
+        </sc-for>
+      </h1>
+      <p style="{{ heroCopyStyle }}">I enjoy untangling complex problems and turning them into products that feel intuitive and effortless.</p>
+      <p style="{{ heroNoteStyle }}">Most of my work sits at the intersection of AI, enterprise software, and human-centered design, where understanding the system is just as important as designing the interface.</p>
+    </div>
+
+    <div style="{{ portraitWrapStyle }}" data-reveal-key="portrait">
+      <div style="{{ portraitMediaStyle }}">
+        <image-slot id="about-portrait" shape="rounded" radius="18" placeholder="Portrait of Priyanka"></image-slot>
+      </div>
+      <div style="{{ portraitCaptionStyle }}">
+        <span style="{{ captionRuleStyle }}"></span>
+        <span style="{{ captionTextStyle }}">BAY AREA, CA</span>
+      </div>
+    </div>
+  </section>
+
+  <section style="{{ rhythmSectionStyle }}" data-reveal-key="rhythm">
+    <div style="{{ drumsMediaStyle }}">
+      <image-slot id="about-drums" shape="rounded" radius="18" placeholder="Priyanka playing drums"></image-slot>
+    </div>
+
+    <div style="{{ rhythmPanelStyle }}">
+      <div style="display:flex;align-items:center;gap:8px">
+        <span style="{{ dotStyle }}"></span>
+        <span style="{{ eyebrowStyle }}">OUTSIDE OF DESIGN</span>
+      </div>
+      <h2 style="{{ rhythmHeadlineStyle }}">Rhythm is a system too.</h2>
+      <p style="{{ rhythmCopyStyle }}">Design isn't the only place I enjoy creating systems. Playing drums has taught me that rhythm, structure, and precision matter just as much as creativity.</p>
+      <p style="{{ rhythmCopyMutedStyle }}">Whether I'm building products or performing with a band, I'm drawn to experiences where many moving parts come together seamlessly.</p>
+    </div>
+  </section>
+
+  <section style="{{ closingSectionStyle }}" data-reveal-key="closing">
+    <div style="{{ closingCardStyle }}">
+      <div style="{{ closingTextStyle }}">
+        <h2 style="{{ closingCopyStyle }}">Curious how I think about systems?</h2>
+        <p style="font-size:15px;color:rgba(255,255,255,0.5);margin:0">Take a look at the products, patterns and workflows I've shaped.</p>
+      </div>
+      <div style="{{ closingActionsStyle }}">
+        <a href="Homepage.dc.html#work" style="{{ primaryBtnStyle }}" style-hover="background-position:0% 0;box-shadow:0 0 0 4px rgba(139,92,246,0.22), 0 8px 24px rgba(139,92,246,0.25)">See the Work<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+        <a href="Contact.dc.html" style="{{ secondaryBtnStyle }}" style-hover="border-color:#a78bfa;background:rgba(139,92,246,0.10)">
+          <span style="{{ dotsWrapStyle }}">
+            <sc-for list="{{ btnDots }}" as="d" hint-placeholder-count="14">
+              <span style="{{ d.style }}"></span>
+            </sc-for>
+          </span>
+          <span style="position:relative;z-index:1;display:inline-flex;align-items:center;gap:8px">Say Hello<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer style="{{ footerStyle }}">
+    <div style="{{ footerLeftStyle }}">
+      <span style="{{ logoMarkStyle }}"><span style="{{ logoMarkTextStyle }}">PL</span></span>
+      <span style="font-size:13px;color:rgba(255,255,255,0.4)">© 2026 Priyanka Lakkad</span>
+    </div>
+    <div style="{{ footerNavStyle }}">
+      <a href="Homepage.dc.html#work" style="{{ footerNavLinkStyle }}" style-hover="color:#a78bfa">Work</a>
+      <a href="About.dc.html" style="{{ footerNavLinkStyle }}" style-hover="color:#a78bfa">About</a>
+      <a href="Homepage.dc.html#resume" style="{{ footerNavLinkStyle }}" style-hover="color:#a78bfa">Resume</a>
+      <a href="Contact.dc.html" style="{{ footerNavLinkStyle }}" style-hover="color:#a78bfa">Contact</a>
+    </div>
+  </footer>
+
+  <div id="ab-progress" style="{{ scrollProgressStyle }}"></div>
+
+  <div style="{{ backToTopStyle }}">
+    <div style="{{ backToTopInnerStyle }}" style-hover="border-color:#a78bfa;background:rgba(139,92,246,0.22);box-shadow:0 8px 22px rgba(0,0,0,0.4), 0 0 16px rgba(139,92,246,0.35)" onClick="{{ scrollToTop }}" role="button" tabindex="0" aria-label="Back to top">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2.4"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+    </div>
+  </div>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;portraitSize&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;wide&quot;,&quot;options&quot;:[&quot;tall&quot;,&quot;wide&quot;],&quot;tsType&quot;:&quot;'tall'|'wide'&quot;,&quot;section&quot;:&quot;Feel&quot;},&quot;panelStyle&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;tinted&quot;,&quot;options&quot;:[&quot;tinted&quot;,&quot;solid&quot;],&quot;tsType&quot;:&quot;'tinted'|'solid'&quot;,&quot;section&quot;:&quot;Feel&quot;},&quot;showCaption&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Feel&quot;}}">
+class Component extends DCLogic {
+  state = { bp: 'desktop', revealed: {}, revealAll: false, showBackToTop: false };
+
+  componentDidMount() {
+    this._reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.measure();
+    this._onResize = () => this.measure();
+    window.addEventListener('resize', this._onResize);
+
+    this._scrollRaf = 0;
+    this._onScroll = () => {
+      if (this._scrollRaf) cancelAnimationFrame(this._scrollRaf);
+      this._scrollRaf = requestAnimationFrame(() => {
+        this._scrollRaf = 0;
+        const y = window.scrollY;
+        const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+        if (!this._bar) this._bar = document.getElementById('ab-progress');
+        if (this._bar) this._bar.style.width = Math.min(100, (y / max) * 100) + '%';
+        const showTop = y > 500;
+        if (showTop !== this.state.showBackToTop) this.setState({ showBackToTop: showTop });
+      });
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+
+    this._onVisible = () => {
+      if (document.visibilityState !== 'visible') return;
+      if (this._scrollRaf) { cancelAnimationFrame(this._scrollRaf); this._scrollRaf = 0; }
+      this._onScroll();
+      this.initReveals();
+    };
+    document.addEventListener('visibilitychange', this._onVisible);
+    this.initReveals();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this._onResize);
+    window.removeEventListener('scroll', this._onScroll);
+    document.removeEventListener('visibilitychange', this._onVisible);
+    if (this._scrollRaf) cancelAnimationFrame(this._scrollRaf);
+    if (this._revealRetry) clearTimeout(this._revealRetry);
+    if (this._io) this._io.disconnect();
+  }
+
+  measure() {
+    const w = window.innerWidth;
+    const bp = w < 768 ? 'mobile' : w < 1080 ? 'tablet' : 'desktop';
+    if (bp !== this.state.bp) this.setState({ bp });
+  }
+
+  initReveals() {
+    if (this._io) return;
+    this._tries = this._tries || 0;
+    const attach = () => {
+      const nodes = document.querySelectorAll('[data-reveal-key]');
+      if (!nodes.length) {
+        if (++this._tries > 40) { this.setState({ revealAll: true }); return; }
+        this._revealRetry = setTimeout(attach, 60);
+        return;
+      }
+      this._io = new IntersectionObserver((entries) => {
+        const updates = {};
+        let changed = false;
+        entries.forEach(en => {
+          if (!en.isIntersecting) return;
+          updates[en.target.dataset.revealKey] = true;
+          changed = true;
+          this._io.unobserve(en.target);
+        });
+        if (changed) this.setState(s => ({ revealed: { ...s.revealed, ...updates } }));
+      }, { rootMargin: '0px 0px -8% 0px' });
+      nodes.forEach(n => this._io.observe(n));
+    };
+    attach();
+  }
+
+  revealStyle(key, delayMs) {
+    const shown = this._reduceMotion || this.state.revealAll || !!this.state.revealed[key];
+    return {
+      opacity: shown ? 1 : 0,
+      transform: shown ? 'translateY(0)' : 'translateY(22px)',
+      transition: `opacity 700ms cubic-bezier(0.2,0.8,0.2,1) ${delayMs || 0}ms, transform 700ms cubic-bezier(0.2,0.8,0.2,1) ${delayMs || 0}ms`
+    };
+  }
+
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: this._reduceMotion ? 'auto' : 'smooth' });
+    if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
+  }
+
+  renderVals() {
+    const bp = this.state.bp;
+    const isDesktop = bp === 'desktop';
+    const isMobile = bp === 'mobile';
+    const pad = isMobile ? 20 : bp === 'tablet' ? 48 : 120;
+    const rm = this._reduceMotion;
+    const portraitSize = this.props.portraitSize ?? 'tall';
+    const panelStyleMode = this.props.panelStyle ?? 'tinted';
+    const showCaption = this.props.showCaption ?? true;
+
+    const rootStyle = { background: '#060607', color: '#fff', fontFamily: "'Geist',sans-serif", minHeight: '100vh', overflowX: 'hidden' };
+
+    const navStyle = { display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: `24px ${pad}px`, borderBottom: '1px solid rgba(255,255,255,0.08)' };
+    const navLinksStyle = { display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'flex-end', gap: isMobile ? '10px 18px' : isDesktop ? 36 : 24, marginLeft: 'auto' };
+    const navLinkStyle = { fontSize: 14, color: 'rgba(255,255,255,0.75)', transition: 'color 180ms ease-out' };
+    const navLinkActiveStyle = { fontSize: 14, color: '#a78bfa', transition: 'color 180ms ease-out' };
+
+    const logoMarkStyle = {
+      width: 36, height: 36, borderRadius: '50%', boxSizing: 'border-box', flexShrink: 0,
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      border: '1.75px solid rgba(167,139,250,0.55)', background: 'transparent',
+      boxShadow: '0 0 14px rgba(139,92,246,0.18)',
+      fontFamily: "'Geist',sans-serif", fontSize: 12.5, fontWeight: 700, letterSpacing: '0.05em'
+    };
+    const logoMarkTextStyle = { backgroundImage: 'linear-gradient(135deg, #d8c9fc, #a78bfa)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', paddingLeft: '0.05em' };
+
+    const dotStyle = { width: 8, height: 8, borderRadius: '50%', background: '#8B5CF6', animation: rm ? 'none' : 'pulseDotSubtle 1.8s ease-in-out infinite' };
+    const eyebrowStyle = { fontFamily: "'Geist Mono',monospace", fontSize: 12, letterSpacing: '0.16em', color: 'rgba(255,255,255,0.55)' };
+
+    const heroSectionStyle = {
+      display: 'flex', flexDirection: isDesktop ? 'row' : 'column',
+      alignItems: 'stretch',
+      gap: isDesktop ? 72 : 40,
+      padding: `${isMobile ? 56 : 96}px ${pad}px ${isMobile ? 64 : 110}px`,
+      maxWidth: 1440, margin: '0 auto'
+    };
+    const heroTextStyle = { flex: isDesktop ? '1 1 auto' : 'none', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 22, maxWidth: 640, position: 'relative' };
+    const heroDotsWrapStyle = { position: 'fixed', inset: 0, zIndex: 0, pointerEvents: 'none', overflow: 'hidden' };
+    let seed = 20260731;
+    const rnd = () => { seed = (seed * 16807) % 2147483647; return seed / 2147483647; };
+    const heroDots = Array.from({ length: 34 }, (_, i) => {
+      const s = 2 + rnd() * 1.6;
+      return {
+        style: {
+          position: 'absolute', left: `${(rnd() * 100).toFixed(2)}%`, top: `${(rnd() * 100).toFixed(2)}%`,
+          width: s, height: s, borderRadius: '50%',
+          background: '#a78bfa', opacity: 0.14 + rnd() * 0.12,
+          animation: rm ? 'none' : `abDrift ${13 + (i % 8) * 2.2}s ease-in-out ${(i % 9) * 0.7}s infinite`
+        }
+      };
+    });
+    const headlineStyle = { display: 'flex', flexWrap: 'wrap', columnGap: '0.28em', rowGap: 0, fontSize: isMobile ? 40 : bp === 'tablet' ? 56 : 76, fontWeight: 700, lineHeight: 0.98, letterSpacing: '-0.01em', margin: 0 };
+    const HEAD = [{ t: 'Hi,' }, { t: "I'm" }, { t: 'Priyanka.', accent: true }];
+    const headlineWords = HEAD.map((w, i) => ({
+      text: w.t,
+      style: {
+        display: 'inline-block', lineHeight: 0.98,
+        color: w.accent ? '#8B5CF6' : undefined,
+        opacity: rm ? 1 : 0,
+        animation: rm ? 'none' : `abRise 0.7s cubic-bezier(0.2,0.8,0.2,1) ${i * 0.08}s both`
+      }
+    }));
+    const heroCopyStyle = { fontSize: isMobile ? 17 : 21, lineHeight: 1.5, color: 'rgba(255,255,255,0.88)', maxWidth: 560, margin: 0, textWrap: 'pretty', fontWeight: 500 };
+    const heroNoteStyle = { fontSize: isMobile ? 15 : 16, lineHeight: 1.62, color: 'rgba(255,255,255,0.5)', maxWidth: 520, margin: 0, textWrap: 'pretty', paddingLeft: 18, borderLeft: '1px solid rgba(139,92,246,0.4)' };
+
+    const PORTRAIT_W = { tall: 340, wide: 420 };
+    const PORTRAIT_AR = { tall: '3/4', wide: '4/5' };
+    const portraitWrapStyle = {
+      flex: isDesktop ? `0 0 ${PORTRAIT_W[portraitSize] || 340}px` : 'none',
+      display: 'flex', flexDirection: 'column', gap: 12,
+      maxWidth: isDesktop ? undefined : 420, width: '100%',
+      ...this.revealStyle('portrait', 120)
+    };
+    const portraitMediaStyle = { width: '100%', flex: isDesktop ? '1 1 auto' : 'none', minHeight: isDesktop ? 420 : undefined, aspectRatio: isDesktop ? undefined : (isMobile ? '4/5' : (PORTRAIT_AR[portraitSize] || '3/4')), overflow: 'hidden', borderRadius: 18, border: '1px solid rgba(255,255,255,0.09)' };
+    const portraitCaptionStyle = { display: showCaption ? 'flex' : 'none', alignItems: 'center', gap: 10 };
+    const captionRuleStyle = { width: 22, height: 1, background: 'rgba(139,92,246,0.6)' };
+    const captionTextStyle = { fontFamily: "'Geist Mono',monospace", fontSize: 11, letterSpacing: '0.16em', color: 'rgba(255,255,255,0.4)' };
+
+    const rhythmSectionStyle = {
+      position: 'relative',
+      display: 'flex', flexDirection: isDesktop ? 'row' : 'column',
+      alignItems: 'center', gap: isDesktop ? 0 : 24,
+      padding: `0 ${pad}px ${isMobile ? 64 : 110}px`,
+      maxWidth: 1440, margin: '0 auto',
+      ...this.revealStyle('rhythm', 0)
+    };
+    const drumsMediaStyle = {
+      flex: isDesktop ? '1 1 58%' : 'none', width: '100%', minWidth: 0,
+      aspectRatio: isMobile ? '4/3' : '16/10',
+      overflow: 'hidden', borderRadius: 18, border: '1px solid rgba(255,255,255,0.09)'
+    };
+    const PANEL = {
+      tinted: { background: 'rgba(139,92,246,0.07)', border: '1px solid rgba(139,92,246,0.18)' },
+      solid: { background: '#0b0b0d', border: '1px solid rgba(255,255,255,0.1)' }
+    }[panelStyleMode];
+    const rhythmPanelStyle = {
+      flex: isDesktop ? '1 1 42%' : 'none', width: '100%', minWidth: 0, boxSizing: 'border-box',
+      display: 'flex', flexDirection: 'column', gap: 16,
+      padding: isMobile ? '26px 22px' : '36px 38px',
+      borderRadius: 24,
+      marginLeft: isDesktop ? -60 : 0,
+      position: 'relative', zIndex: 2,
+      backdropFilter: 'blur(14px)',
+      ...PANEL
+    };
+    const rhythmHeadlineStyle = { fontSize: isMobile ? 28 : 36, fontWeight: 600, letterSpacing: '-0.02em', lineHeight: 1.06, margin: 0 };
+    const rhythmCopyStyle = { fontSize: isMobile ? 15 : 17, lineHeight: 1.58, color: 'rgba(255,255,255,0.8)', margin: 0, textWrap: 'pretty' };
+    const rhythmCopyMutedStyle = { fontSize: isMobile ? 14.5 : 16, lineHeight: 1.6, color: 'rgba(255,255,255,0.5)', margin: 0, textWrap: 'pretty' };
+
+    const closingSectionStyle = {
+      padding: `${isMobile ? 8 : 12}px ${pad}px ${isMobile ? 60 : 90}px`,
+      maxWidth: 1440, margin: '0 auto',
+      ...this.revealStyle('closing', 0)
+    };
+    const closingCardStyle = {
+      display: 'flex', flexDirection: isDesktop ? 'row' : 'column',
+      justifyContent: 'space-between', alignItems: isDesktop ? 'center' : 'flex-start', gap: 28,
+      padding: isMobile ? '32px 24px' : '44px 48px', borderRadius: 24,
+      background: 'rgba(139,92,246,0.07)', border: '1px solid rgba(139,92,246,0.18)'
+    };
+    const closingTextStyle = { display: 'flex', flexDirection: 'column', gap: 14, maxWidth: 560 };
+    const closingCopyStyle = { fontSize: isMobile ? 26 : 34, fontWeight: 600, letterSpacing: '-0.01em', margin: 0, color: '#fff', textWrap: 'pretty' };
+    const closingActionsStyle = { display: 'flex', gap: 14, flexWrap: 'wrap', flexShrink: 0 };
+
+    const primaryBtnStyle = { display: 'inline-flex', alignItems: 'center', gap: 8, height: 48, boxSizing: 'border-box', padding: '0 22px', borderRadius: 14, color: '#fff', fontSize: 15, fontWeight: 500, backgroundImage: 'linear-gradient(110deg, #8B5CF6 35%, #ab84f9 50%, #8B5CF6 65%)', backgroundSize: '250% 100%', backgroundPosition: '100% 0', transition: 'background-position 500ms ease, box-shadow 180ms ease-out' };
+    const secondaryBtnStyle = { display: 'inline-flex', alignItems: 'center', gap: 8, height: 48, boxSizing: 'border-box', padding: '0 22px', borderRadius: 14, background: 'transparent', border: '1.5px solid #8B5CF6', color: '#fff', fontSize: 15, fontWeight: 500, position: 'relative', overflow: 'hidden', transition: 'background 180ms ease-out, border-color 180ms ease-out' };
+
+    const dotsWrapStyle = { position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none' };
+    const DOT_LAYOUT = [
+      { x: 62, y: 12, s: 3, o: 0.5 }, { x: 78, y: 8, s: 2, o: 0.35 }, { x: 90, y: 18, s: 4, o: 0.55 },
+      { x: 70, y: 30, s: 2, o: 0.3 }, { x: 85, y: 38, s: 3, o: 0.45 }, { x: 60, y: 46, s: 2, o: 0.35 },
+      { x: 95, y: 52, s: 3, o: 0.5 }, { x: 76, y: 58, s: 2, o: 0.3 }, { x: 66, y: 70, s: 4, o: 0.5 },
+      { x: 88, y: 76, s: 2, o: 0.35 }, { x: 72, y: 88, s: 3, o: 0.45 }, { x: 94, y: 92, s: 2, o: 0.3 },
+      { x: 56, y: 60, s: 2, o: 0.25 }, { x: 82, y: 20, s: 2, o: 0.3 }
+    ];
+    const btnDots = DOT_LAYOUT.map((d, i) => ({
+      style: {
+        position: 'absolute', left: `${d.x}%`, top: `${d.y}%`, width: d.s, height: d.s, borderRadius: '50%',
+        background: '#8B5CF6', opacity: d.o,
+        animation: rm ? 'none' : `abDotPulse ${3 + (i % 5) * 0.4}s ease-in-out ${(i % 7) * 0.15}s infinite`
+      }
+    }));
+
+    const footerStyle = { display: 'flex', flexDirection: isMobile ? 'column' : 'row', justifyContent: 'space-between', alignItems: isMobile ? 'flex-start' : 'center', gap: 20, padding: `28px ${pad}px`, borderTop: '1px solid rgba(255,255,255,0.08)' };
+    const footerLeftStyle = { display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap' };
+    const footerNavStyle = { display: 'flex', flexWrap: 'wrap', gap: isMobile ? '10px 18px' : 28 };
+    const footerNavLinkStyle = { fontSize: 13, color: 'rgba(255,255,255,0.6)', transition: 'color 180ms ease-out' };
+
+    const scrollProgressStyle = { position: 'fixed', top: 0, left: 0, height: 3, width: '0%', background: 'linear-gradient(90deg, #8B5CF6, #ab84f9)', zIndex: 50 };
+
+    const showBackToTop = this.state.showBackToTop;
+    const backToTopStyle = {
+      position: 'fixed', right: isMobile ? 20 : 32, bottom: isMobile ? 20 : 32, zIndex: 40,
+      opacity: showBackToTop ? 1 : 0, transform: showBackToTop ? 'translateY(0)' : 'translateY(12px)', pointerEvents: showBackToTop ? 'auto' : 'none',
+      transition: 'opacity 220ms ease-out, transform 220ms ease-out'
+    };
+    const backToTopInnerStyle = {
+      width: 44, height: 44, borderRadius: '50%', border: '1px solid rgba(139,92,246,0.35)', background: 'rgba(139,92,246,0.12)', backdropFilter: 'blur(8px)',
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      boxShadow: '0 8px 20px rgba(0,0,0,0.35)',
+      animation: (rm || !showBackToTop) ? 'none' : 'abFloat 2.8s ease-in-out infinite alternate',
+      transition: 'border-color 180ms ease-out, background 180ms ease-out, box-shadow 180ms ease-out'
+    };
+
+    return {
+      rootStyle, navStyle, navLinksStyle, navLinkStyle, navLinkActiveStyle, logoMarkStyle, logoMarkTextStyle,
+      dotStyle, eyebrowStyle,
+      heroSectionStyle, heroTextStyle, heroDotsWrapStyle, heroDots, headlineStyle, headlineWords, heroCopyStyle, heroNoteStyle,
+      portraitWrapStyle, portraitMediaStyle, portraitCaptionStyle, captionRuleStyle, captionTextStyle,
+      rhythmSectionStyle, drumsMediaStyle, rhythmPanelStyle, rhythmHeadlineStyle, rhythmCopyStyle, rhythmCopyMutedStyle,
+      closingSectionStyle, closingCardStyle, closingTextStyle, closingCopyStyle, closingActionsStyle, primaryBtnStyle, secondaryBtnStyle, dotsWrapStyle, btnDots,
+      footerStyle, footerLeftStyle, footerNavStyle, footerNavLinkStyle,
+      scrollProgressStyle, backToTopStyle, backToTopInnerStyle,
+      scrollToTop: () => this.scrollToTop()
+    };
+  }
+}
+
+</script>
+</body>
+</html>

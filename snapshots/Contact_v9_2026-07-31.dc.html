@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="./resume-data.js"></script>
+  <style>
+    body { margin:0; background:#060607;
+      background-image:
+        radial-gradient(1200px 800px at 6% -6%, rgba(139,92,246,0.38), transparent 60%),
+        radial-gradient(1000px 700px at 98% 10%, rgba(99,102,241,0.30), transparent 62%),
+        radial-gradient(1100px 800px at 50% 108%, rgba(167,139,250,0.24), transparent 64%);
+      background-attachment: fixed; background-repeat: no-repeat; }
+    a { color:#8B5CF6; text-decoration:none; }
+    a:hover { color:#a78bfa; }
+    @keyframes ctRise { from{ opacity:0; transform:translateY(18px); } to{ opacity:1; transform:translateY(0); } }
+    @keyframes pulseDotSubtle { 0%,100%{ transform:scale(1); opacity:0.65; box-shadow:0 0 0 2px rgba(139,92,246,0.18); } 50%{ transform:scale(1.15); opacity:1; box-shadow:0 0 0 3px rgba(139,92,246,0.28); } }
+    @keyframes ctFloat { from{ transform:translateY(0); } to{ transform:translateY(-3px); } }
+    @keyframes ctDotPulse { 0%,100%{ opacity:0.15; transform:scale(1); } 50%{ opacity:0.55; transform:scale(1.4); } }
+    @keyframes orbitA { 0%{ transform:translate(-25%,-45%) scale(1); } 20%{ transform:translate(120%,-40%) scale(1.15); } 40%{ transform:translate(150%,90%) scale(0.95); } 60%{ transform:translate(45%,130%) scale(1.2); } 80%{ transform:translate(-30%,55%) scale(1); } 100%{ transform:translate(-25%,-45%) scale(1); } }
+    @keyframes orbitB { 0%{ transform:translate(150%,110%) scale(1.05); } 20%{ transform:translate(-30%,95%) scale(0.95); } 40%{ transform:translate(-35%,-40%) scale(1.15); } 60%{ transform:translate(90%,-50%) scale(1); } 80%{ transform:translate(165%,25%) scale(1.1); } 100%{ transform:translate(150%,110%) scale(1.05); } }
+    @keyframes orbitC { 0%{ transform:translate(60%,130%) scale(1); } 25%{ transform:translate(160%,15%) scale(1.12); } 50%{ transform:translate(20%,-50%) scale(0.92); } 75%{ transform:translate(-35%,70%) scale(1.18); } 100%{ transform:translate(60%,130%) scale(1); } }
+    a, button, [role="button"] { cursor:pointer; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior:auto; } }
+  </style>
+</helmet>
+<div style="{{ rootStyle }}">
+
+  <nav style="{{ navStyle }}">
+    <div style="{{ navInnerStyle }}">
+      <a href="Homepage.dc.html" style="display:flex;align-items:center;gap:12px">
+        <span style="{{ logoMarkStyle }}"><span style="{{ logoMarkTextStyle }}">PL</span></span>
+        <span style="font-family:'Geist',sans-serif;font-weight:600;font-size:16px;color:#fff;letter-spacing:-0.01em">Priyanka Lakkad</span>
+      </a>
+      <div style="{{ burgerStyle }}" onClick="{{ toggleMenu }}" role="button" tabindex="0" aria-label="Menu">
+        <sc-for list="{{ burgerBars }}" as="bb" hint-placeholder-count="3">
+          <span style="{{ bb.style }}"></span>
+        </sc-for>
+      </div>
+      <div style="{{ navLinksStyle }}" onClick="{{ closeMenu }}">
+        <a href="Homepage.dc.html#work" style="{{ navLinkStyle }}" style-hover="color:#a78bfa">Work</a>
+        <a href="About.dc.html" style="{{ navLinkStyle }}" style-hover="color:#a78bfa">About</a>
+        <a href="assets/Priyanka-Lakkad-Resume.pdf" target="_blank" rel="noopener" onClick="{{ openResume }}" style="{{ navLinkStyle }}" style-hover="color:#a78bfa">Resume</a>
+        <a href="Contact.dc.html" style="{{ navLinkActiveStyle }}" style-hover="color:#a78bfa">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <section id="contact" style="{{ leadSectionStyle }}">
+    <div style="{{ leadTextStyle }}">
+    <div style="display:flex;align-items:center;gap:8px">
+      <span style="{{ dotStyle }}"></span>
+      <span style="{{ eyebrowStyle }}">AVAILABLE FOR FULL-TIME PRODUCT DESIGN OPPORTUNITIES</span>
+    </div>
+    <h1 style="{{ headlineStyle }}">
+      <sc-for list="{{ headlineWords }}" as="w" hint-placeholder-count="4">
+        <span style="{{ w.style }}">{{ w.text }}</span>
+      </sc-for>
+    </h1>
+    <p style="{{ leadCopyStyle }}">Whether you're building AI-powered products, reimagining enterprise workflows, or simply want to talk about design, I'd love to hear from you.</p>
+    <p style="{{ leadNoteStyle }}">I'm always happy to connect about product design, emerging AI experiences, or new opportunities.</p>
+    </div>
+
+    <div style="{{ linkTableStyle }}">
+      <div style="{{ tableRowStyle }}" style-hover="background:rgba(139,92,246,0.10);border-color:rgba(139,92,246,0.28)">
+        <span style="{{ tableIconStyle }}">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7.5l8 5.5 8-5.5"/></svg>
+        </span>
+        <div style="{{ tableValueWrapStyle }}">
+          <span style="{{ tableLabelStyle }}">EMAIL</span>
+          <a href="mailto:plakkad06@gmail.com" style="{{ tableLinkStyle }}" style-hover="color:#a78bfa">
+            <span style="{{ tableTextStyle }}">plakkad06@gmail.com</span>
+          </a>
+        </div>
+        <span style="{{ copyBtnStyle }}" style-hover="color:#a78bfa;border-color:rgba(139,92,246,0.55)" onClick="{{ copyEmail }}" role="button" tabindex="0">{{ copyLabel }}</span>
+      </div>
+
+      <div style="{{ tableRowStyle }}" style-hover="background:rgba(139,92,246,0.10);border-color:rgba(139,92,246,0.28)">
+        <span style="{{ tableIconStyle }}">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7.5 10.5V17"/><path d="M7.5 7.2v.1"/><path d="M11.5 17v-3.6a2.4 2.4 0 014.8 0V17"/><path d="M11.5 10.5V17"/></svg>
+        </span>
+        <div style="{{ tableValueWrapStyle }}">
+          <span style="{{ tableLabelStyle }}">LINKEDIN</span>
+          <a href="https://www.linkedin.com/in/priyankalakkad/" target="_blank" rel="noopener noreferrer" onClick="{{ openLinkedIn }}" style="{{ tableLinkStyle }}" style-hover="color:#a78bfa">
+            <span style="{{ tableTextStyle }}">in/priyankalakkad</span>
+          </a>
+        </div>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="{{ tableArrowStyle }}"><path d="M7 17L17 7M8 7h9v9"/></svg>
+      </div>
+
+      <div style="{{ tableRowLastStyle }}" style-hover="background:rgba(139,92,246,0.10);border-color:rgba(139,92,246,0.28)">
+        <span style="{{ tableIconStyle }}">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.6"/><path d="M17 7v.1"/></svg>
+        </span>
+        <div style="{{ tableValueWrapStyle }}">
+          <span style="{{ tableLabelStyle }}">INSTAGRAM</span>
+          <a href="https://www.instagram.com/drummerpriyanka/" target="_blank" rel="noopener noreferrer" onClick="{{ openInstagram }}" style="{{ tableLinkStyle }}" style-hover="color:#a78bfa">
+            <span style="{{ tableTextStyle }}">@drummerpriyanka</span>
+          </a>
+        </div>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="{{ tableArrowStyle }}"><path d="M7 17L17 7M8 7h9v9"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <section style="{{ closingSectionStyle }}" data-reveal-key="closing">
+    <div style="{{ closingCardStyle }}">
+      <sc-for list="{{ cardBlobs }}" as="b" hint-placeholder-count="3">
+        <span style="{{ b.style }}"></span>
+      </sc-for>
+      <div style="{{ closingTextStyle }}">
+        <h2 style="{{ closingCopyStyle }}">Curious to know how I think about systems?</h2>
+        <p style="font-size:15px;color:rgba(255,255,255,0.5);margin:0">Take a look at the products, patterns and workflows I've shaped.</p>
+      </div>
+      <div style="{{ closingActionsStyle }}">
+        <a href="Homepage.dc.html#work" style="{{ primaryBtnStyle }}" style-hover="background-position:0% 0;box-shadow:0 0 0 4px rgba(139,92,246,0.22), 0 8px 24px rgba(139,92,246,0.25)">See the Work<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+        <a href="About.dc.html" style="{{ secondaryBtnStyle }}" style-hover="border-color:#a78bfa;background-color:rgba(10,8,16,0.55);background-position:0% 0;box-shadow:0 0 0 4px rgba(139,92,246,0.22), 0 8px 24px rgba(139,92,246,0.25)" style-active="background-color:rgba(6,5,10,0.75);border-color:#8B5CF6">
+          <span style="{{ dotsWrapStyle }}">
+            <sc-for list="{{ btnDots }}" as="d" hint-placeholder-count="14">
+              <span style="{{ d.style }}"></span>
+            </sc-for>
+          </span>
+          <span style="position:relative;z-index:1;display:inline-flex;align-items:center;gap:8px">About Me<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer style="{{ footerStyle }}">
+    <div style="{{ footerInnerStyle }}">
+      <div style="{{ footerLeftStyle }}">
+        <span style="{{ logoMarkStyle }}"><span style="{{ logoMarkTextStyle }}">PL</span></span>
+        <span style="font-size:13px;color:rgba(255,255,255,0.4)">© 2026 Priyanka Lakkad</span>
+      </div>
+      <div style="{{ footerNavStyle }}">
+        <a href="Homepage.dc.html#work" style="{{ footerNavLinkStyle }}" style-hover="color:#a78bfa">Work</a>
+        <a href="About.dc.html" style="{{ footerNavLinkStyle }}" style-hover="color:#a78bfa">About</a>
+        <a href="assets/Priyanka-Lakkad-Resume.pdf" target="_blank" rel="noopener" onClick="{{ openResume }}" style="{{ footerNavLinkStyle }}" style-hover="color:#a78bfa">Resume</a>
+        <a href="Contact.dc.html" style="{{ footerNavLinkStyle }}" style-hover="color:#a78bfa">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <div id="ct-progress" style="{{ scrollProgressStyle }}"></div>
+
+  <div style="{{ backToTopStyle }}">
+    <div style="{{ backToTopInnerStyle }}" style-hover="border-color:#a78bfa;background:rgba(139,92,246,0.22);box-shadow:0 8px 22px rgba(0,0,0,0.4), 0 0 16px rgba(139,92,246,0.35)" onClick="{{ scrollToTop }}" role="button" tabindex="0" aria-label="Back to top">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2.4"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+    </div>
+  </div>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;emailScale&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;display&quot;,&quot;options&quot;:[&quot;display&quot;,&quot;calm&quot;],&quot;tsType&quot;:&quot;'display'|'calm'&quot;,&quot;section&quot;:&quot;Feel&quot;},&quot;alignment&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;left&quot;,&quot;options&quot;:[&quot;left&quot;,&quot;center&quot;],&quot;tsType&quot;:&quot;'left'|'center'&quot;,&quot;section&quot;:&quot;Feel&quot;},&quot;showCopyAction&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Feel&quot;}}">
+class Component extends DCLogic {
+  state = { bp: 'desktop', revealed: {}, revealAll: false, showBackToTop: false, copied: false };
+
+  componentDidMount() {
+    this._reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.measure();
+    this._onResize = () => this.measure();
+    window.addEventListener('resize', this._onResize);
+
+    this._scrollRaf = 0;
+    this._onScroll = () => {
+      if (this._scrollRaf) cancelAnimationFrame(this._scrollRaf);
+      this._scrollRaf = requestAnimationFrame(() => {
+        this._scrollRaf = 0;
+        const y = window.scrollY;
+        const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+        if (!this._bar) this._bar = document.getElementById('ct-progress');
+        if (this._bar) this._bar.style.width = Math.min(100, (y / max) * 100) + '%';
+        const showTop = y > 500;
+        if (showTop !== this.state.showBackToTop) this.setState({ showBackToTop: showTop });
+      });
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+
+    this._onVisible = () => {
+      if (document.visibilityState !== 'visible') return;
+      if (this._scrollRaf) { cancelAnimationFrame(this._scrollRaf); this._scrollRaf = 0; }
+      this._onScroll();
+      this.initReveals();
+    };
+    document.addEventListener('visibilitychange', this._onVisible);
+    this.initReveals();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this._onResize);
+    window.removeEventListener('scroll', this._onScroll);
+    document.removeEventListener('visibilitychange', this._onVisible);
+    if (this._scrollRaf) cancelAnimationFrame(this._scrollRaf);
+    if (this._revealRetry) clearTimeout(this._revealRetry);
+    if (this._copyTimer) clearTimeout(this._copyTimer);
+    if (this._io) this._io.disconnect();
+    if (this._blocksRaf) cancelAnimationFrame(this._blocksRaf);
+    if (this._blocksMeasure) cancelAnimationFrame(this._blocksMeasure);
+    if (this._blocksRetry) clearTimeout(this._blocksRetry);
+    if (this._blocksResize) window.removeEventListener('resize', this._blocksResize);
+    if (this._blocksVis) this._blocksVis.disconnect();
+  }
+
+  measure() {
+    const w = window.innerWidth;
+    const bp = w < 768 ? 'mobile' : w < 1080 ? 'tablet' : 'desktop';
+    const wide = w >= 1800;
+    if (bp !== this.state.bp || wide !== this.state.wide) this.setState({ bp, wide });
+  }
+
+  initReveals() {
+    if (this._io || this._revealPending) return;
+    this._revealPending = true;
+    this._tries = this._tries || 0;
+    const attach = () => {
+      const nodes = document.querySelectorAll('[data-reveal-key]');
+      if (!nodes.length) {
+        if (++this._tries > 40) { this._revealPending = false; this.setState({ revealAll: true }); return; }
+        this._revealRetry = setTimeout(attach, 60);
+        return;
+      }
+      this._revealPending = false;
+      this._io = new IntersectionObserver((entries) => {
+        const updates = {};
+        let changed = false;
+        entries.forEach(en => {
+          if (!en.isIntersecting) return;
+          updates[en.target.dataset.revealKey] = true;
+          changed = true;
+          this._io.unobserve(en.target);
+        });
+        if (changed) this.setState(s => ({ revealed: { ...s.revealed, ...updates } }));
+      }, { rootMargin: '0px 0px -8% 0px' });
+      nodes.forEach(n => this._io.observe(n));
+    };
+    attach();
+  }
+
+  revealStyle(key, delayMs) {
+    const shown = this._reduceMotion || this.state.revealAll || !!this.state.revealed[key];
+    return {
+      opacity: shown ? 1 : 0,
+      transform: shown ? 'translateY(0)' : 'translateY(22px)',
+      transition: `opacity 700ms cubic-bezier(0.2,0.8,0.2,1) ${delayMs || 0}ms, transform 700ms cubic-bezier(0.2,0.8,0.2,1) ${delayMs || 0}ms`
+    };
+  }
+
+  copyEmail(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    const email = 'plakkad06@gmail.com';
+    const flag = () => {
+      this.setState({ copied: true });
+      if (this._copyTimer) clearTimeout(this._copyTimer);
+      this._copyTimer = setTimeout(() => this.setState({ copied: false }), 1800);
+    };
+    const legacy = () => {
+      const ta = document.createElement('textarea');
+      ta.value = email;
+      ta.setAttribute('readonly', '');
+      ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0;pointer-events:none';
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, email.length);
+      let ok = false;
+      try { ok = document.execCommand('copy'); } catch (err) { ok = false; }
+      document.body.removeChild(ta);
+      return ok;
+    };
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText && window.isSecureContext) {
+        navigator.clipboard.writeText(email).then(flag).catch(() => { legacy(); flag(); });
+        return;
+      }
+    } catch (err) {}
+    legacy();
+    flag();
+  }
+
+  initBlocks() {
+    if (this._blocksStarted) return;
+    const canvas = document.getElementById('ct-blocks');
+    if (!canvas) { this._blocksRetry = setTimeout(() => this.initBlocks(), 80); return; }
+    this._blocksStarted = true;
+
+    const ctx = canvas.getContext('2d');
+    let W = 0, H = 0;
+    const resize = () => {
+      const r = canvas.getBoundingClientRect();
+      if (r.width < 40 || r.height < 40) { this._blocksMeasure = requestAnimationFrame(resize); return; }
+      const dpr = Math.min(2, window.devicePixelRatio || 1);
+      W = r.width; H = r.height;
+      canvas.width = Math.round(W * dpr);
+      canvas.height = Math.round(H * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+    this._blocksMeasure = requestAnimationFrame(resize);
+    this._blocksResize = () => resize();
+    window.addEventListener('resize', this._blocksResize);
+
+    // grid coords: [col, row] col 0..2 left→right, row 0 = bottom
+    const PLAN = [
+      [0, 0], [1, 0], [2, 0],
+      [0, 1], [1, 1],
+      [1, 2]
+    ];
+    const U = 46, V = 24, HGT = 30;
+    const reduce = this._reduceMotion;
+    const IN_MS = 420, STAGGER = 260, HOLD = 1600, OUT_MS = 520;
+    const total = PLAN.length * STAGGER + IN_MS + HOLD + OUT_MS;
+    const start = performance.now();
+    const easeOut = t => 1 - Math.pow(1 - t, 3);
+    const clamp01 = v => v < 0 ? 0 : v > 1 ? 1 : v;
+
+    let visible = true;
+    if (window.IntersectionObserver) {
+      this._blocksVis = new IntersectionObserver(en => { visible = en[0].isIntersecting; });
+      this._blocksVis.observe(canvas);
+    }
+
+    const face = (cx, cy, pts, fill, stroke) => {
+      ctx.beginPath();
+      ctx.moveTo(cx + pts[0][0], cy + pts[0][1]);
+      for (let i = 1; i < pts.length; i++) ctx.lineTo(cx + pts[i][0], cy + pts[i][1]);
+      ctx.closePath();
+      ctx.fillStyle = fill;
+      ctx.fill();
+      ctx.strokeStyle = stroke;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    };
+
+    const frame = (now) => {
+      this._blocksRaf = requestAnimationFrame(frame);
+      if (!visible || !W) return;
+      const t = reduce ? (PLAN.length * STAGGER + IN_MS) : (now - start) % total;
+      ctx.clearRect(0, 0, W, H);
+
+      const ox = W / 2;
+      const oy = H / 2 + 52;
+
+      // ground guide
+      ctx.beginPath();
+      for (let c = 0; c <= 3; c++) {
+        ctx.moveTo(ox + (c - 1.5) * U, oy + (c - 1.5) * V * -1 + 12);
+      }
+      const outStart = PLAN.length * STAGGER + IN_MS + HOLD;
+      const outP = reduce ? 0 : clamp01((t - outStart) / OUT_MS);
+      const globalA = 1 - outP;
+
+      PLAN.forEach((p, i) => {
+        const appear = clamp01((t - i * STAGGER) / IN_MS);
+        if (appear <= 0) return;
+        const e = easeOut(appear);
+        const [col, row] = p;
+        const bx = ox + (col - 1) * U;
+        const by = oy - row * HGT - (col - 1) * 0 - (1 - e) * 42;
+        const a = e * globalA;
+        if (a <= 0.01) return;
+
+        const top = [[0, -V], [U * 0.5, 0], [0, V], [-U * 0.5, 0]];
+        const left = [[-U * 0.5, 0], [0, V], [0, V + HGT], [-U * 0.5, HGT]];
+        const right = [[U * 0.5, 0], [0, V], [0, V + HGT], [U * 0.5, HGT]];
+
+        face(bx, by, left, `rgba(139,92,246,${0.10 * a})`, `rgba(139,92,246,${0.5 * a})`);
+        face(bx, by, right, `rgba(139,92,246,${0.16 * a})`, `rgba(139,92,246,${0.5 * a})`);
+        face(bx, by, top, `rgba(139,92,246,${0.24 * a})`, `rgba(167,139,250,${0.7 * a})`);
+      });
+    };
+    this._blocksRaf = requestAnimationFrame(frame);
+  }
+
+  openExternal(url) {
+    return (e) => {
+      if (e && e.preventDefault) e.preventDefault();
+      try { window.open(url, '_blank', 'noopener,noreferrer'); } catch (err) {}
+    };
+  }
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: this._reduceMotion ? 'auto' : 'smooth' });
+    if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
+  }
+
+  renderVals() {
+    const bp = this.state.bp;
+    const isDesktop = bp === 'desktop';
+    const isMobile = bp === 'mobile';
+    const maxW = this.state.wide ? 1600 : 1440;
+    const pad = isMobile ? 20 : bp === 'tablet' ? 48 : 120;
+    const rm = this._reduceMotion;
+    const emailScale = this.props.emailScale ?? 'display';
+    const align = this.props.alignment ?? 'left';
+    const showCopy = this.props.showCopyAction ?? true;
+
+    const centered = align === 'center';
+
+    const rootStyle = { background: 'transparent', color: '#fff', fontFamily: "'Geist',sans-serif", minHeight: '100vh', overflowX: 'hidden', display: 'flex', flexDirection: 'column' };
+
+    const openResume = (e) => {
+      if (typeof window.__openResume !== 'function') return;
+      if (e && e.preventDefault) e.preventDefault();
+      window.__openResume();
+    };
+    const isCompact = !isDesktop;
+    const menuOpen = !!this.state.menuOpen;
+    const toggleMenu = () => this.setState({ menuOpen: !this.state.menuOpen });
+    const closeMenu = () => { if (this.state.menuOpen) this.setState({ menuOpen: false }); };
+    const burgerStyle = {
+      display: isCompact ? 'inline-flex' : 'none', flexDirection: 'column', justifyContent: 'center',
+      alignItems: 'center', gap: 5, width: 44, height: 44, marginRight: -10, borderRadius: 12,
+      border: '1px solid rgba(139,92,246,0.28)', background: menuOpen ? 'rgba(139,92,246,0.14)' : 'transparent',
+      transition: 'background 180ms ease-out, border-color 180ms ease-out', flexShrink: 0
+    };
+    const burgerBar = (i) => ({
+      width: 18, height: 1.6, borderRadius: 2, background: '#d8c9fc',
+      transition: 'transform 240ms cubic-bezier(0.22,1,0.36,1), opacity 180ms ease-out',
+      transform: menuOpen ? (i === 0 ? 'translateY(6.6px) rotate(45deg)' : i === 2 ? 'translateY(-6.6px) rotate(-45deg)' : 'scaleX(0)') : 'none',
+      opacity: menuOpen && i === 1 ? 0 : 1
+    });
+    const burgerBars = [0, 1, 2].map(i => ({ style: burgerBar(i) }));
+    const navStyle = { position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid rgba(255,255,255,0.08)'  };
+    const navInnerStyle = { display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap', maxWidth: maxW, margin: '0 auto', width: '100%', boxSizing: 'border-box', padding: `24px ${pad}px` };
+    const navLinksStyle = isCompact ? {
+      position: 'absolute', top: '100%', left: 0, right: 0, zIndex: 60,
+      display: menuOpen ? 'flex' : 'none', flexDirection: 'column', alignItems: 'stretch', gap: 0,
+      padding: '6px 20px 14px', boxSizing: 'border-box',
+      background: 'rgba(9,8,12,0.97)', backdropFilter: 'blur(16px)',
+      borderBottom: '1px solid rgba(255,255,255,0.08)',
+      boxShadow: '0 18px 40px rgba(0,0,0,0.5)'
+    } : { display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'flex-end', gap: 36, marginLeft: 'auto', marginRight: 0, position: 'relative', zIndex: 1 };
+    const navLinkStyle = { fontSize: 14, color: 'rgba(255,255,255,0.75)', transition: 'color 180ms ease-out' , ...(isCompact ? { display: 'block', width: '100%', padding: '14px 2px', fontSize: 16, borderBottom: '1px solid rgba(255,255,255,0.06)' } : {}) };
+    const navLinkActiveStyle = { fontSize: 14, color: '#a78bfa', transition: 'color 180ms ease-out' , ...(isCompact ? { display: 'block', width: '100%', padding: '14px 2px', fontSize: 16, borderBottom: '1px solid rgba(255,255,255,0.06)' } : {}) };
+
+    const logoMarkStyle = {
+      width: 36, height: 36, borderRadius: '50%', boxSizing: 'border-box', flexShrink: 0,
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      border: '1.75px solid rgba(167,139,250,0.55)', background: 'transparent',
+      boxShadow: '0 0 14px rgba(139,92,246,0.18)',
+      fontFamily: "'Geist',sans-serif", fontSize: 12.5, fontWeight: 700, letterSpacing: '0.05em'
+    };
+    const logoMarkTextStyle = { backgroundImage: 'linear-gradient(135deg, #d8c9fc, #a78bfa)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', paddingLeft: '0.05em' };
+
+    const dotStyle = { width: 8, height: 8, borderRadius: '50%', background: '#8B5CF6', animation: rm ? 'none' : 'pulseDotSubtle 1.8s ease-in-out infinite' };
+    const eyebrowStyle = { fontFamily: "'Geist Mono',monospace", fontSize: 12, letterSpacing: '0.16em', color: 'rgba(255,255,255,0.55)' };
+    const fieldLabelStyle = { fontFamily: "'Geist Mono',monospace", fontSize: 11, letterSpacing: '0.16em', color: 'rgba(255,255,255,0.38)' };
+
+    const wrapAlign = centered ? { alignItems: 'center', textAlign: 'center' } : { alignItems: 'flex-start' };
+
+    const leadSectionStyle = {
+      display: 'flex', flexDirection: isDesktop ? 'row' : 'column',
+      alignItems: isDesktop ? 'center' : 'stretch', gap: isDesktop ? 72 : 36,
+      padding: `${isMobile ? 56 : 80}px ${pad}px ${isMobile ? 72 : 96}px`,
+      boxSizing: 'border-box',
+      width: '100%', boxSizing: 'border-box', maxWidth: maxW, margin: '0 auto'
+    };
+    const leadTextStyle = { flex: isDesktop ? '1 1 auto' : 'none', minWidth: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 24, maxWidth: 660, ...wrapAlign };
+
+    const linkTableStyle = {
+      flex: isDesktop ? '0 1 520px' : 'none', width: '100%', minWidth: isDesktop ? 430 : 0, maxWidth: isDesktop ? 520 : undefined, boxSizing: 'border-box',
+      marginLeft: isDesktop ? 'auto' : 0,
+      display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 6,
+      borderRadius: 22, border: '1px solid rgba(139,92,246,0.18)', background: 'rgba(139,92,246,0.07)',
+      padding: isMobile ? 14 : 18
+    };
+    const rowBase = {
+      display: 'flex', flexDirection: 'column', gap: 10, flex: isDesktop ? '1 1 0' : 'none',
+      justifyContent: 'center',
+      padding: `${isMobile ? 20 : 26}px 0`
+    };
+    const tableRowStyle = {
+      display: 'flex', alignItems: 'center', gap: 14,
+      padding: isMobile ? '14px 14px' : '16px 18px',
+      borderRadius: 14, border: '1px solid transparent',
+      transition: 'background 180ms ease-out, border-color 180ms ease-out'
+    };
+    const tableRowLastStyle = tableRowStyle;
+    const tableIconStyle = {
+      width: 38, height: 38, borderRadius: 11, flexShrink: 0, boxSizing: 'border-box',
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      border: '1px solid rgba(139,92,246,0.28)', background: 'rgba(139,92,246,0.10)', color: '#a78bfa'
+    };
+    const tableLabelStyle = { fontFamily: "'Geist Mono',monospace", fontSize: 10, letterSpacing: '0.16em', color: 'rgba(255,255,255,0.38)' };
+    const tableValueWrapStyle = { display: 'flex', flexDirection: 'column', gap: 3, minWidth: 0, flex: '1 1 auto' };
+    const tableLinkStyle = { display: 'flex', alignItems: 'center', gap: 14, color: '#fff', transition: 'color 180ms ease-out', minWidth: 0, flex: '1 1 auto' };
+    const tableTextStyle = { fontSize: isMobile ? 15 : 17, fontWeight: 500, letterSpacing: '-0.01em', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' };
+    const tableArrowStyle = { flexShrink: 0, opacity: 0.4, marginLeft: 'auto' };
+    const headlineStyle = { display: 'flex', flexWrap: 'wrap', justifyContent: centered ? 'center' : 'flex-start', columnGap: '0.28em', rowGap: 0, fontSize: isMobile ? 38 : bp === 'tablet' ? 54 : 'clamp(46px, 5vw, 72px)', fontWeight: 700, lineHeight: 0.98, letterSpacing: '-0.015em', margin: 0, maxWidth: 860 };
+    const HEAD = [{ t: "Let's" }, { t: 'build' }, { t: 'something' }, { t: 'meaningful.', accent: true }];
+    const headlineWords = HEAD.map((w, i) => ({
+      text: w.t,
+      style: {
+        display: 'inline-block', lineHeight: 0.98,
+        color: w.accent ? '#8B5CF6' : undefined,
+        opacity: rm ? 1 : 0,
+        animation: rm ? 'none' : `ctRise 0.7s cubic-bezier(0.2,0.8,0.2,1) ${i * 0.08}s both`
+      }
+    }));
+    const leadCopyStyle = { fontSize: isMobile ? 17 : 20, lineHeight: 1.52, color: 'rgba(255,255,255,0.8)', maxWidth: 640, margin: 0, textWrap: 'pretty', fontWeight: 500 };
+    const leadNoteStyle = { fontSize: isMobile ? 15 : 16, lineHeight: 1.6, color: 'rgba(255,255,255,0.48)', maxWidth: 560, margin: 0, textWrap: 'pretty' };
+
+    const emailSectionStyle = {
+      display: 'flex', flexDirection: 'column', gap: 14,
+      padding: `${isMobile ? 24 : 32}px ${pad}px 0`,
+      width: '100%', boxSizing: 'border-box', maxWidth: maxW, margin: '0 auto', ...wrapAlign,
+      ...this.revealStyle('email', 0)
+    };
+    const EMAIL_SIZE = { display: isMobile ? 20 : bp === 'tablet' ? 28 : 36, calm: isMobile ? 18 : 26 };
+    const emailLinkStyle = {
+      display: 'inline-flex', alignItems: 'center', gap: isMobile ? 10 : 14,
+      color: '#fff', transition: 'color 220ms ease-out', maxWidth: '100%'
+    };
+    const emailTextStyle = {
+      fontSize: EMAIL_SIZE[emailScale] || EMAIL_SIZE.display,
+      fontWeight: 600, letterSpacing: '-0.02em', lineHeight: 1.1,
+      wordBreak: 'break-word'
+    };
+    const emailArrowStyle = { flexShrink: 0, opacity: 0.5 };
+    const emailRuleStyle = { height: 1, width: '100%', maxWidth: 860, background: 'linear-gradient(90deg, rgba(139,92,246,0.4), rgba(139,92,246,0.03))' };
+    const emailRowStyle = { display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap', justifyContent: centered ? 'center' : 'flex-start' };
+    const copyRowStyle = { display: showCopy ? 'flex' : 'none' };
+    const copyBtnStyle = {
+      display: 'inline-flex', alignItems: 'center', gap: 8,
+      fontFamily: "'Geist Mono',monospace", fontSize: 11, letterSpacing: '0.14em',
+      color: this.state.copied ? '#a78bfa' : 'rgba(255,255,255,0.45)',
+      border: '1px solid rgba(255,255,255,0.14)', borderRadius: 999, padding: '5px 11px',
+      display: showCopy ? 'inline-flex' : 'none', flexShrink: 0,
+      transition: 'color 180ms ease-out, border-color 180ms ease-out, background 180ms ease-out'
+    };
+    const copyLabel = this.state.copied ? 'COPIED' : 'COPY ADDRESS';
+
+    const socialSectionStyle = {
+      display: 'flex', flexDirection: 'column', gap: isMobile ? 28 : 36,
+      padding: `${isMobile ? 24 : 32}px ${pad}px ${isMobile ? 72 : 110}px`,
+      width: '100%', boxSizing: 'border-box', maxWidth: maxW, margin: '0 auto', ...wrapAlign,
+      borderBottom: '1px solid rgba(255,255,255,0.08)'
+    };
+    const socialItemStyle = { display: 'flex', flexDirection: 'column', gap: 12, width: '100%', ...wrapAlign };
+    const socialLineStyle = { display: 'inline-flex', alignItems: 'center', gap: isMobile ? 10 : 14, color: '#fff', transition: 'color 220ms ease-out', maxWidth: '100%' };
+    const socialIconStyle = { flexShrink: 0, opacity: 0.7 };
+    const socialTextStyle = { fontSize: isMobile ? 20 : bp === 'tablet' ? 28 : 36, fontWeight: 600, letterSpacing: '-0.02em', lineHeight: 1.1, wordBreak: 'break-word' };
+    const socialRuleStyle = { height: 1, width: '100%', maxWidth: 860, background: 'linear-gradient(90deg, rgba(139,92,246,0.4), rgba(139,92,246,0.03))' };
+
+    const CARD_BLOBS = [
+      { c: 'rgba(167,139,250,0.30)', s: 62, anim: 'orbitA', dur: 26 },
+      { c: 'rgba(99,102,241,0.26)', s: 56, anim: 'orbitB', dur: 32 },
+      { c: 'rgba(139,92,246,0.22)', s: 70, anim: 'orbitC', dur: 38 }
+    ];
+    const cardBlobs = CARD_BLOBS.map(b => ({
+      style: {
+        position: 'absolute', top: 0, left: 0, width: b.s + '%', aspectRatio: '1',
+        borderRadius: '50%', background: 'radial-gradient(closest-side, ' + b.c + ', transparent 72%)',
+        filter: 'blur(28px)', pointerEvents: 'none',
+        animation: rm ? 'none' : b.anim + ' ' + b.dur + 's ease-in-out infinite'
+      }
+    }));
+    const closingSectionStyle = {
+      padding: `${isMobile ? 8 : 12}px ${pad}px ${isMobile ? 60 : 90}px`,
+      width: '100%', boxSizing: 'border-box', maxWidth: maxW, margin: '0 auto',
+      ...this.revealStyle('closing', 0)
+    };
+    const closingCardStyle = {
+      display: 'flex', flexDirection: isDesktop ? 'row' : 'column',
+      justifyContent: 'space-between', alignItems: isDesktop ? 'center' : 'flex-start', gap: 28,
+      padding: isMobile ? '32px 24px' : '44px 48px', borderRadius: 24,
+      background: 'rgba(139,92,246,0.07)', border: '1px solid rgba(139,92,246,0.18)',
+      position: 'relative', overflow: 'hidden'
+    };
+    const closingTextStyle = { display: 'flex', flexDirection: 'column', gap: 14, maxWidth: 560 };
+    const closingCopyStyle = { fontSize: isMobile ? 26 : 34, fontWeight: 600, letterSpacing: '-0.01em', margin: 0, color: '#fff', textWrap: 'pretty' };
+    const closingActionsStyle = { display: 'flex', gap: 14, flexWrap: 'wrap', flexShrink: 0 };
+
+    const primaryBtnStyle = { display: 'inline-flex', alignItems: 'center', gap: 8, height: 48, boxSizing: 'border-box', padding: '0 22px', borderRadius: 14, color: '#fff', fontSize: 15, fontWeight: 500, backgroundImage: 'linear-gradient(110deg, #8B5CF6 35%, #ab84f9 50%, #8B5CF6 65%)', backgroundSize: '250% 100%', backgroundPosition: '100% 0', transition: 'background-position 500ms ease, box-shadow 180ms ease-out' };
+    const secondaryBtnStyle = { display: 'inline-flex', alignItems: 'center', gap: 8, height: 48, boxSizing: 'border-box', padding: '0 22px', borderRadius: 14, backgroundColor: 'transparent', backgroundImage: 'linear-gradient(110deg, rgba(139,92,246,0.12) 35%, rgba(196,181,253,0.22) 50%, rgba(139,92,246,0.12) 65%)', backgroundSize: '250% 100%', backgroundPosition: '100% 0', border: '1.5px solid #8B5CF6', color: '#fff', fontSize: 15, fontWeight: 500, position: 'relative', overflow: 'hidden', transition: 'background-position 500ms ease, background-color 180ms ease-out, border-color 180ms ease-out, box-shadow 180ms ease-out' };
+    const dotsWrapStyle = { position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none' };
+    const DOT_LAYOUT = [
+      { x: 62, y: 12, s: 3, o: 0.5 }, { x: 78, y: 8, s: 2, o: 0.35 }, { x: 90, y: 18, s: 4, o: 0.55 },
+      { x: 70, y: 30, s: 2, o: 0.3 }, { x: 85, y: 38, s: 3, o: 0.45 }, { x: 60, y: 46, s: 2, o: 0.35 },
+      { x: 95, y: 52, s: 3, o: 0.5 }, { x: 76, y: 58, s: 2, o: 0.3 }, { x: 66, y: 70, s: 4, o: 0.5 },
+      { x: 88, y: 76, s: 2, o: 0.35 }, { x: 72, y: 88, s: 3, o: 0.45 }, { x: 94, y: 92, s: 2, o: 0.3 },
+      { x: 56, y: 60, s: 2, o: 0.25 }, { x: 82, y: 20, s: 2, o: 0.3 }
+    ];
+    const btnDots = [].map((d, i) => ({
+      style: {
+        position: 'absolute', left: `${d.x}%`, top: `${d.y}%`, width: d.s, height: d.s, borderRadius: '50%',
+        background: '#8B5CF6', opacity: d.o,
+        animation: rm ? 'none' : `ctDotPulse ${3 + (i % 5) * 0.4}s ease-in-out ${(i % 7) * 0.15}s infinite`
+      }
+    }));
+
+    const footerStyle = { marginTop: 'auto', display: 'flex', flexDirection: isMobile ? 'column' : 'row', justifyContent: 'space-between', alignItems: isMobile ? 'flex-start' : 'center', gap: 20, borderTop: '1px solid rgba(255,255,255,0.08)'  };
+    const footerInnerStyle = { display: 'flex', flexDirection: isMobile ? 'column' : 'row', justifyContent: 'space-between', alignItems: isMobile ? 'flex-start' : 'center', gap: 20, flexWrap: 'wrap', maxWidth: maxW, margin: '0 auto', width: '100%', boxSizing: 'border-box', padding: `28px ${pad}px` };
+    const footerLeftStyle = { display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap' };
+    const footerNavStyle = { display: isCompact ? 'none' : 'flex', flexWrap: 'wrap', gap: isMobile ? '10px 18px' : 28 };
+    const footerNavLinkStyle = { fontSize: 13, color: 'rgba(255,255,255,0.6)', transition: 'color 180ms ease-out' };
+
+    const scrollProgressStyle = { position: 'fixed', top: 0, left: 0, height: 3, width: '0%', background: 'linear-gradient(90deg, #8B5CF6, #ab84f9)', zIndex: 50 };
+
+    const showBackToTop = this.state.showBackToTop;
+    const backToTopStyle = {
+      position: 'fixed', right: isMobile ? 20 : 32, bottom: isMobile ? 20 : 32, zIndex: 40,
+      opacity: showBackToTop ? 1 : 0, transform: showBackToTop ? 'translateY(0)' : 'translateY(12px)', pointerEvents: showBackToTop ? 'auto' : 'none',
+      transition: 'opacity 220ms ease-out, transform 220ms ease-out'
+    };
+    const backToTopInnerStyle = {
+      width: 44, height: 44, borderRadius: '50%', border: '1px solid rgba(139,92,246,0.35)', background: 'rgba(139,92,246,0.12)', backdropFilter: 'blur(8px)',
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      boxShadow: '0 8px 20px rgba(0,0,0,0.35)',
+      animation: (rm || !showBackToTop) ? 'none' : 'ctFloat 2.8s ease-in-out infinite alternate',
+      transition: 'border-color 180ms ease-out, background 180ms ease-out, box-shadow 180ms ease-out'
+    };
+
+    return {
+      rootStyle, openResume, navStyle, navInnerStyle, burgerStyle, burgerBars, toggleMenu, closeMenu, navLinksStyle, navLinkStyle, navLinkActiveStyle, logoMarkStyle, logoMarkTextStyle,
+      dotStyle, eyebrowStyle, fieldLabelStyle,
+      leadSectionStyle, leadTextStyle, linkTableStyle, tableRowStyle, tableRowLastStyle, tableLabelStyle, tableIconStyle, tableValueWrapStyle, tableLinkStyle, tableTextStyle, tableArrowStyle,
+      headlineStyle, headlineWords, leadCopyStyle, leadNoteStyle,
+      emailSectionStyle, emailLinkStyle, emailTextStyle, emailArrowStyle, emailRuleStyle,
+      emailRowStyle, copyRowStyle, copyBtnStyle, copyLabel, copyEmail: (e) => this.copyEmail(e),
+      openLinkedIn: this.openExternal('https://www.linkedin.com/in/priyankalakkad/'),
+      openInstagram: this.openExternal('https://www.instagram.com/drummerpriyanka/'),
+      socialSectionStyle, socialItemStyle, socialLineStyle, socialIconStyle, socialTextStyle, socialRuleStyle,
+      closingSectionStyle, closingCardStyle, cardBlobs, closingTextStyle, closingCopyStyle, closingActionsStyle,
+      primaryBtnStyle, secondaryBtnStyle, dotsWrapStyle, btnDots,
+      footerStyle, footerInnerStyle, footerLeftStyle, footerNavStyle, footerNavLinkStyle,
+      scrollProgressStyle, backToTopStyle, backToTopInnerStyle,
+      scrollToTop: () => this.scrollToTop()
+    };
+  }
+}
+
+</script>
+</body>
+</html>
