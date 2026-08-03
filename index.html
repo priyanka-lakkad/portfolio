@@ -841,7 +841,7 @@ class Component extends DCLogic {
       floatWrapStyle: { animation: this._reduceMotion ? 'none' : `floatBobSmall ${6 * ENERGY.speed}s ease-in-out infinite alternate` },
       wrapStyle: isDesktop
         ? { width: 80, height: 30, flex: '0 0 auto', filter: 'grayscale(1) opacity(0.55)', transition: 'filter 180ms ease-out' }
-        : { width: isMobile ? 44 : 60, height: isMobile ? 24 : 28, flex: '0 0 auto', filter: 'grayscale(1) opacity(0.55)', transition: 'filter 180ms ease-out' },
+        : { width: isMobile ? 32 : 44, height: isMobile ? 18 : 22, flex: '0 0 auto', filter: 'grayscale(1) opacity(0.55)', transition: 'filter 180ms ease-out' },
       hoverStyle: { filter: 'grayscale(0) sepia(1) hue-rotate(220deg) saturate(3) opacity(0.9)' }
     }));
     const metaCols = [
