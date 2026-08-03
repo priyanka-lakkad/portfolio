@@ -128,6 +128,9 @@
         animation-play-state: running !important; transition-duration: 0s !important;
       }
     }
+    @media (max-width: 767px) {
+      html, body { max-width: 100vw; overflow-x: hidden; }
+    }
   `;
   var FULL_PAGE_CSS = "html,body{height:100%;margin:0}#dc-root,#dc-root>.sc-host{height:100%}";
   function rootNameForDocument(doc, loc) {
