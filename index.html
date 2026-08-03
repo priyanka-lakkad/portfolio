@@ -835,13 +835,13 @@ class Component extends DCLogic {
     const logosBlockStyle = { display: 'flex', flexDirection: 'column', gap: 20, alignItems: 'flex-start', flex: isDesktop ? '1 1 auto' : 'none', minWidth: 0 };
     const logosRowStyle = isDesktop
       ? { display: 'flex', gap: 14, flexWrap: 'nowrap', rowGap: 12, alignItems: 'center', justifyContent: 'space-between', width: '100%' }
-      : { display: 'flex', gap: isMobile ? 4 : 8, flexWrap: 'nowrap', alignItems: 'center', justifyContent: 'space-between', width: '100%' };
+      : { display: 'flex', gap: isMobile ? 4 : 8, flexWrap: 'nowrap', alignItems: 'center', justifyContent: 'space-evenly', width: '100%' };
     const logos = LOGO_DEFS.map((l, i) => ({
       label: l, id: `logo-${i}`, src: slotFile(`logo-${i}`),
       floatWrapStyle: { animation: this._reduceMotion ? 'none' : `floatBobSmall ${6 * ENERGY.speed}s ease-in-out infinite alternate` },
       wrapStyle: isDesktop
         ? { width: 80, height: 30, flex: '0 0 auto', filter: 'grayscale(1) opacity(0.55)', transition: 'filter 180ms ease-out' }
-        : { width: '100%', maxWidth: isMobile ? 50 : 66, height: isMobile ? 26 : 30, flex: '1 1 0', minWidth: 0, filter: 'grayscale(1) opacity(0.55)', transition: 'filter 180ms ease-out' },
+        : { width: isMobile ? 44 : 60, height: isMobile ? 24 : 28, flex: '0 0 auto', filter: 'grayscale(1) opacity(0.55)', transition: 'filter 180ms ease-out' },
       hoverStyle: { filter: 'grayscale(0) sepia(1) hue-rotate(220deg) saturate(3) opacity(0.9)' }
     }));
     const metaCols = [
