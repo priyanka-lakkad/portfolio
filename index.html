@@ -672,7 +672,7 @@ class Component extends DCLogic {
       electric: { amp: 1.8, speed: 0.6, glow: 1.7, dot: 1.8 }
     }[energyLevel];
 
-    const rootStyle = { background: 'transparent', color: '#fff', fontFamily: "'Geist',sans-serif", minHeight: '100vh', overflowX: 'hidden' };
+    const rootStyle = { background: 'transparent', color: '#fff', fontFamily: "'Geist',sans-serif", minHeight: '100vh', overflowX: isMobile ? 'visible' : 'hidden' };
 
     const scrolled = this.state.scrolled;
     const isCompact = !isDesktop;

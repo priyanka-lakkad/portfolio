@@ -302,7 +302,7 @@ class Component extends DCLogic {
     const slideCount = Math.max(1, Number(this.props.slideCount ?? 12));
     const slideAspect = this.props.slideAspect || '16/9';
 
-    const rootStyle = { background: 'transparent', color: '#fff', fontFamily: "'Geist',sans-serif", minHeight: '100vh', overflowX: 'hidden', display: 'flex', flexDirection: 'column' };
+    const rootStyle = { background: 'transparent', color: '#fff', fontFamily: "'Geist',sans-serif", minHeight: '100vh', overflowX: isMobile ? 'visible' : 'hidden', display: 'flex', flexDirection: 'column' };
 
     const isCompact = !isDesktop;
     const menuOpen = !!this.state.menuOpen;
