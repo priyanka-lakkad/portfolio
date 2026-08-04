@@ -490,7 +490,7 @@ class Component extends DCLogic {
     const footerNavStyle = { display: isCompact ? 'none' : 'flex', gap: 24, flexWrap: 'wrap' };
     const footerNavLinkStyle = { fontSize: 13, color: 'rgba(255,255,255,0.6)', transition: 'color 180ms ease-out' };
 
-    const scrollProgressStyle = { position: isMobile ? 'sticky' : 'fixed', top: 0, left: 0, height: 3, width: (this.state.progress * 100) + '%', background: 'linear-gradient(90deg, #8B5CF6, #ab84f9)', zIndex: 50 };
+    const scrollProgressStyle = { position: 'fixed', display: isMobile ? 'none' : 'block', top: 0, left: 0, height: 3, width: (this.state.progress * 100) + '%', background: 'linear-gradient(90deg, #8B5CF6, #ab84f9)', zIndex: 50 };
 
     const showTop = this.state.showTop;
     const backToTopStyle = {

@@ -954,7 +954,7 @@ class Component extends DCLogic {
       animation: (this._reduceMotion || !showBackToTop) ? 'none' : `floatBobSmall ${2.8 * ENERGY.speed}s ease-in-out infinite alternate`,
       transition: 'border-color 180ms ease-out, background 180ms ease-out, box-shadow 180ms ease-out'
     };
-    const scrollProgressStyle = { position: isMobile ? 'sticky' : 'fixed', top: 0, left: 0, height: 3, width: '0%', background: 'linear-gradient(90deg, #8B5CF6, #ab84f9)', zIndex: 50 };
+    const scrollProgressStyle = { position: 'fixed', display: isMobile ? 'none' : 'block', top: 0, left: 0, height: 3, width: '0%', background: 'linear-gradient(90deg, #8B5CF6, #ab84f9)', zIndex: 50 };
 
     return {
       isDesktop, rootStyle, navStyle, navInnerStyle, burgerStyle, burgerBars, toggleMenu, closeMenu, barDotsWrapStyle, barDots, navLinksStyle, footerNavStyle, navLinkStyle, navLinkHoverStyle, footerNavLinkStyle, focusRingStyle, logoMarkStyle, logoMarkTextStyle, logoDotsWrapStyle, logoDots, activeDotStyle, availableDotStyle,
