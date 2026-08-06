@@ -548,23 +548,26 @@ class Component extends DCLogic {
       });
 
       if (lineA > 0) {
-        ctx.lineWidth = 1;
+        ctx.lineWidth = 1.1;
         ctx.lineCap = 'round';
         ctx.lineJoin = 'round';
+        ctx.shadowBlur = 7;
         edges.forEach(e => {
           const a = pos[e.a], b = pos[e.b];
           if (!a || !b) return;
           const grad = ctx.createLinearGradient(a.x, a.y, b.x, b.y);
-          grad.addColorStop(0, `rgba(255,255,255,${0.05 * lineA})`);
-          grad.addColorStop(0.5, `rgba(${PURPLE},${0.30 * lineA})`);
-          grad.addColorStop(1, `rgba(255,255,255,${0.05 * lineA})`);
+          grad.addColorStop(0, `rgba(255,255,255,${0.08 * lineA})`);
+          grad.addColorStop(0.5, `rgba(${PURPLE},${0.55 * lineA})`);
+          grad.addColorStop(1, `rgba(255,255,255,${0.08 * lineA})`);
           ctx.beginPath();
           ctx.moveTo(a.x, a.y);
           const mx = (a.x + b.x) / 2;
           ctx.bezierCurveTo(mx, a.y, mx, b.y, b.x, b.y);
           ctx.strokeStyle = grad;
+          ctx.shadowColor = `rgba(${PURPLE},${0.85 * lineA})`;
           ctx.stroke();
         });
+        ctx.shadowBlur = 0;
       }
 
       const pulseStart = SCATTER_MS + MORPH_MS + 700;
